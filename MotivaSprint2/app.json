@@ -20,8 +20,22 @@
         "backgroundColor": "#0f172a"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "web": {},
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O Motiva Safety precisa acessar suas fotos para anexar evidências às ocorrências.",
+          "cameraPermission": "O Motiva Safety precisa usar a câmera para registrar evidências das ocorrências.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "O Motiva Safety usa sua localização para registrar onde a ocorrência aconteceu."
+        }
+      ]
+    ]
   }
 }

@@ -116,7 +116,10 @@ export default function ListaOcorrencias({
         data={ocorrenciasFiltradas}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
-          <OcorrenciaCard ocorrencia={item} onPress={onVerDetalhe} />
+          <OcorrenciaCard
+            ocorrencia={item}
+            onPress={onVerDetalhe}
+          />
         )}
         contentContainerStyle={styles.lista}
         showsVerticalScrollIndicator={false}
