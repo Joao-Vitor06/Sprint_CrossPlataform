@@ -1,4 +1,4 @@
-# MotivaSprint2
+# MotivaSprint3
 
 Código do aplicativo Motiva Safety. A documentação completa do projeto, incluindo status das
 funcionalidades, pendências e plano da Sprint 4, está no [README da raiz](../README.md).
