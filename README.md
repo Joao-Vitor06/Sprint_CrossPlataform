@@ -56,7 +56,7 @@ O código principal está em:
 
 Principais diretórios:
 
-\`text
+```text
 MotivaSprint2/
 ├── App.tsx
 ├── package.json
@@ -73,7 +73,7 @@ MotivaSprint2/
 ├── assets/               # Ícones e imagens utilizadas no app
 ├── TESTES_SPRINT3.md     # Documento de testes manuais
 └── ROTEIRO_VIDEO.md      # Roteiro do vídeo de demonstração
-\`
+```
 
 ### Telas principais
 
