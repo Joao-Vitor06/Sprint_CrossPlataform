@@ -324,17 +324,17 @@ O roteiro foi estruturado para uma demonstração de aproximadamente **2 minutos
 
 No terminal:
 
-\`\`\`bash
+```bash
 git clone https://github.com/Joao-Vitor06/Sprint_CrossPlataform.git
 cd Sprint_CrossPlataform/motiva-safety/MotivaSprint2
 npm install
-\`\`\`
+```
 
 ### Executar com Expo
 
-\`\`\`bash
+```bash
 npx expo start
-\`\`
+```
 
 Depois, escaneie o QR Code com o Expo Go ou abra o projeto em um emulador.
 
