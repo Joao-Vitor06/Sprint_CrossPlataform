@@ -5,7 +5,10 @@ funcionalidades, pendências e plano da Sprint 4, está no [README da raiz](../R
 
 ## Rodar localmente
 
+Após o gitclone faça os seguintes comandos:
 ```bash
+cd motiva-safety
+cd motivasprint2
 npm install
 npx expo start
 ```
