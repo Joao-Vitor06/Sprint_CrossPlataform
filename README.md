@@ -306,7 +306,7 @@ O roteiro foi estruturado para uma demonstração de aproximadamente **2 minutos
 7. falha de conexão;
 8. lista vazia.
 
-**Link do vídeo:** _a adicionar após publicação._
+**Link do vídeo:** _https://youtube.com/shorts/ONDTA85zl04?is=oredA9yclh9nRfmM_
 
 ---
 
