@@ -22,7 +22,8 @@ export function EmptyState({ icone, titulo, descricao, acao, acaoSecundaria }: E
   const { palette } = useAppTheme();
   return (
     <View style={styles.container}>
-      <View style={[styles.circulo, { backgroundColor: palette.actionSoft }]}>\n        <Ionicons name={icone} size={30} color={palette.action} />
+      <View style={[styles.circulo, { backgroundColor: palette.actionSoft }]}>
+        <Ionicons name={icone} size={30} color={palette.action} />
       </View>
 
       <AppText variant="subtitle" style={styles.titulo}>
@@ -59,7 +60,8 @@ export function ErrorState({
   const { palette } = useAppTheme();
   return (
     <View style={styles.container}>
-      <View style={[styles.circulo, { backgroundColor: palette.dangerSoft }]}>\n        <Ionicons name="cloud-offline-outline" size={30} color={palette.danger} />
+      <View style={[styles.circulo, { backgroundColor: palette.dangerSoft }]}>
+        <Ionicons name="cloud-offline-outline" size={30} color={palette.danger} />
       </View>
 
       <AppText variant="subtitle" style={styles.titulo}>
@@ -111,7 +113,7 @@ function Skeleton({ largura, altura, raio = radius.sm }: { largura: number | `${
         width: largura,
         height: altura,
         borderRadius: raio,
-        backgroundColor: colors.slate200,
+        backgroundColor: palette.surfaceMuted,
         opacity: pulso,
       }}
     />
