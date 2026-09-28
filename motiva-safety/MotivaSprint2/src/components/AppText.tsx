@@ -1,6 +1,6 @@
 import { Text, TextProps, StyleSheet } from "react-native";
 
-import { palette, typography } from "../theme";
+import { typography, useAppTheme } from "../theme";
 
 type Variante = keyof typeof typography;
 
@@ -17,6 +17,8 @@ type Props = TextProps & {
  * redefinir fontSize e fontWeight na mão.
  */
 export function AppText({ variant = "body", color, style, ...rest }: Props) {
+  const { palette } = useAppTheme();
+
   return (
     <Text
       {...rest}
