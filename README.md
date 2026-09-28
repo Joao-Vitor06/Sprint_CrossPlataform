@@ -190,6 +190,8 @@ O projeto possui um documento específico com os testes realizados:
 
 **[TESTES_SPRINT3.md](./motiva-safety/MotivaSprint2/TESTES_SPRINT3.md)**
 
+**[TESTES_SPRINT4_FINAL.md](./motiva-safety/docs/TESTES_SPRINT4_FINAL.md)** — checklist de regressão para o APK final.
+
 Foram documentados **20 casos de teste manuais**, divididos em:
 
 | Grupo | Casos | Resultado |
