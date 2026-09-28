@@ -51,7 +51,7 @@ export function FilterChips<T extends string>({
         </AppText>
 
         {typeof opcao.contagem === "number" ? (
-          <View style={[styles.contagem, ativo && styles.contagemAtiva]}>
+          <View style={[styles.contagem, { backgroundColor: palette.background }, ativo && styles.contagemAtiva]}>
             <AppText
               variant="caption"
               color={ativo ? palette.textInverse : palette.textMuted}
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xs,
     paddingVertical: 1,
     borderRadius: radius.pill,
-    backgroundColor: palette.background,
     alignItems: "center",
   },
   contagemAtiva: {
