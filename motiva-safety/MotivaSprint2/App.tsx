@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -16,10 +16,24 @@ import {
 import { ToastProvider } from "./src/components";
 import { OcorrenciasProvider } from "./src/context/OcorrenciasContext";
 import { RootNavigator } from "./src/navigation/RootNavigator";
-import { palette } from "./src/theme";
+import { ThemeProvider, useAppTheme } from "./src/theme";
 
-// Mantém a splash na tela até as fontes carregarem, evitando o "pulo" de fonte.
 void SplashScreen.preventAutoHideAsync();
+
+function AppShell() {
+  const { palette, mode } = useAppTheme();
+
+  return (
+    <View style={{ flex: 1, backgroundColor: palette.background }}>
+      <StatusBar style={mode === "dark" ? "light" : "dark"} backgroundColor={palette.headerBackground} />
+      <OcorrenciasProvider>
+        <ToastProvider>
+          <RootNavigator />
+        </ToastProvider>
+      </OcorrenciasProvider>
+    </View>
+  );
+}
 
 export default function App() {
   const [fontesCarregadas, erroFontes] = useFonts({
@@ -30,14 +44,13 @@ export default function App() {
     Inter_800ExtraBold,
   });
 
-  const [pronto, setPronto] = useState(false);
-
-  // Se a fonte falhar, o app segue com a fonte do sistema em vez de travar.
-  useEffect(() => {
-    if (fontesCarregadas || erroFontes) setPronto(true);
-  }, [fontesCarregadas, erroFontes]);
+  const pronto = fontesCarregadas || Boolean(erroFontes);
 
   const aoDesenhar = useCallback(() => {
+    if (pronto) void SplashScreen.hideAsync();
+  }, [pronto]);
+
+  useEffect(() => {
     if (pronto) void SplashScreen.hideAsync();
   }, [pronto]);
 
@@ -46,14 +59,9 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }} onLayout={aoDesenhar}>
       <SafeAreaProvider>
-        <View style={{ flex: 1, backgroundColor: palette.background }}>
-          <StatusBar style="light" />
-          <OcorrenciasProvider>
-            <ToastProvider>
-              <RootNavigator />
-            </ToastProvider>
-          </OcorrenciasProvider>
-        </View>
+        <ThemeProvider>
+          <AppShell />
+        </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );
