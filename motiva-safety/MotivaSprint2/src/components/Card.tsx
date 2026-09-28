@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 
-import { palette, radius, shadows, spacing } from "../theme";
+import { radius, shadows, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 
 type Props = {
@@ -14,8 +14,10 @@ type Props = {
 
 /** Superfície branca elevada. Base visual de praticamente todo bloco do app. */
 export function Card({ children, titulo, style, semPadding = false }: Props) {
+  const { palette } = useAppTheme();
+
   return (
-    <View style={[styles.card, !semPadding && styles.padding, style]}>
+    <View style={[styles.card, { backgroundColor: palette.surface, borderColor: palette.border }, !semPadding && styles.padding, style]}>
       {titulo ? (
         <AppText variant="overline" color={palette.textMuted} style={styles.titulo}>
           {titulo}
@@ -28,10 +30,8 @@ export function Card({ children, titulo, style, semPadding = false }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: palette.surface,
     borderRadius: radius.lg,
     borderWidth: 1,
-    borderColor: palette.border,
     ...shadows.sm,
   },
   padding: {
