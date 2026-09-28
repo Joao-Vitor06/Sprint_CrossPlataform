@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { TIPO, palette, radius, spacing } from "../theme";
+import { TIPO, radius, spacing, useAppTheme } from "../theme";
 import type { TipoOcorrencia } from "../types";
 import { AppText } from "./AppText";
 
@@ -14,6 +14,8 @@ const TIPOS = Object.keys(TIPO) as TipoOcorrencia[];
 
 /** Grade com os oito tipos de problema que o operador pode registrar. */
 export function SeletorTipo({ selecionado, onSelecionar }: Props) {
+  const { palette } = useAppTheme();
+
   return (
     <View style={styles.grade}>
       {TIPOS.map((tipo) => {
@@ -29,7 +31,8 @@ export function SeletorTipo({ selecionado, onSelecionar }: Props) {
             accessibilityLabel={config.label}
             style={({ pressed }) => [
               styles.item,
-              ativo && styles.itemAtivo,
+              { borderColor: palette.border, backgroundColor: palette.surface },
+              ativo && { borderColor: palette.action, backgroundColor: palette.actionSoft },
               pressed && styles.pressionado,
             ]}
           >
@@ -73,12 +76,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xs,
     borderRadius: radius.md,
     borderWidth: 1.5,
-    borderColor: palette.border,
-    backgroundColor: palette.surface,
-  },
-  itemAtivo: {
-    borderColor: palette.action,
-    backgroundColor: palette.actionSoft,
   },
   pressionado: {
     opacity: 0.75,
