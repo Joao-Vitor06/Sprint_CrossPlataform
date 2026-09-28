@@ -50,7 +50,7 @@ export function PainelDemonstracao({
         <View style={[styles.puxador, { backgroundColor: palette.borderStrong }]} />
 
         <View style={styles.cabecalho}>
-          <View style={styles.icone}>
+          <View style={[styles.icone, { backgroundColor: palette.actionSoft }]}>
             <Ionicons name="flask-outline" size={20} color={palette.action} />
           </View>
           <View style={styles.cabecalhoTextos}>
@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: radius.md,
-    backgroundColor: palette.actionSoft,
     alignItems: "center",
     justifyContent: "center",
   },
