@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import { palette, radius, shadows, spacing } from "../theme";
+import { radius, shadows, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 
 type Variante = "primario" | "secundario" | "contorno" | "fantasma" | "perigo" | "sucesso";
@@ -26,15 +26,6 @@ type Props = {
   style?: ViewStyle;
 };
 
-const VARIANTES: Record<Variante, { fundo: string; texto: string; borda?: string }> = {
-  primario: { fundo: palette.action, texto: palette.textInverse },
-  secundario: { fundo: palette.actionSoft, texto: palette.actionSoftText },
-  contorno: { fundo: palette.surface, texto: palette.textSecondary, borda: palette.borderStrong },
-  fantasma: { fundo: "transparent", texto: palette.action },
-  perigo: { fundo: palette.danger, texto: palette.textInverse },
-  sucesso: { fundo: palette.success, texto: palette.textInverse },
-};
-
 /** Botão padrão do app, com estado de carregamento e desabilitado embutidos. */
 export function Button({
   titulo,
@@ -47,6 +38,15 @@ export function Button({
   larguraTotal = false,
   style,
 }: Props) {
+  const { palette } = useAppTheme();
+  const VARIANTES: Record<Variante, { fundo: string; texto: string; borda?: string }> = {
+    primario: { fundo: palette.action, texto: palette.textInverse },
+    secundario: { fundo: palette.actionSoft, texto: palette.actionSoftText },
+    contorno: { fundo: palette.surface, texto: palette.textSecondary, borda: palette.borderStrong },
+    fantasma: { fundo: "transparent", texto: palette.action },
+    perigo: { fundo: palette.danger, texto: palette.textInverse },
+    sucesso: { fundo: palette.success, texto: palette.textInverse },
+  };
   const cores = VARIANTES[variante];
   const inativo = desabilitado || carregando;
   const solido = variante === "primario" || variante === "perigo" || variante === "sucesso";
