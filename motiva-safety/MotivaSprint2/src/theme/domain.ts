@@ -33,7 +33,7 @@ export const RISCO: Record<NivelRisco, VisualConfig & { ordem: number; descricao
   baixo: {
     label: "Baixo",
     cor: colors.green600,
-    fundo: colors.green100,
+    fundo: "rgba(34, 197, 94, 0.14)",
     solido: colors.green500,
     ordem: 1,
     descricao: "Sem impacto imediato ao tráfego. Entra na programação de manutenção.",
@@ -41,7 +41,7 @@ export const RISCO: Record<NivelRisco, VisualConfig & { ordem: number; descricao
   medio: {
     label: "Médio",
     cor: colors.amber600,
-    fundo: colors.amber100,
+    fundo: "rgba(245, 158, 11, 0.16)",
     solido: colors.amber500,
     ordem: 2,
     descricao: "Pode agravar se não for tratado. Atendimento em até 72 horas.",
@@ -49,7 +49,7 @@ export const RISCO: Record<NivelRisco, VisualConfig & { ordem: number; descricao
   alto: {
     label: "Alto",
     cor: colors.red600,
-    fundo: colors.red100,
+    fundo: "rgba(239, 68, 68, 0.14)",
     solido: colors.red500,
     ordem: 3,
     descricao: "Risco imediato de acidente. Aciona a equipe de campo em regime de urgência.",
@@ -60,21 +60,21 @@ export const STATUS: Record<StatusOcorrencia, VisualConfig & { icone: IoniconNam
   aberta: {
     label: "Aberta",
     cor: "#1D4ED8",
-    fundo: colors.blue100,
+    fundo: "rgba(59, 130, 246, 0.14)",
     solido: colors.blue600,
     icone: "ellipse-outline",
   },
   em_analise: {
     label: "Em análise",
     cor: colors.amber600,
-    fundo: colors.amber100,
+    fundo: "rgba(245, 158, 11, 0.16)",
     solido: colors.amber500,
     icone: "time-outline",
   },
   resolvida: {
     label: "Resolvida",
     cor: colors.green600,
-    fundo: colors.green100,
+    fundo: "rgba(34, 197, 94, 0.14)",
     solido: colors.green500,
     icone: "checkmark-circle-outline",
   },
