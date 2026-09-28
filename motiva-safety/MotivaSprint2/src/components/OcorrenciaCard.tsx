@@ -3,7 +3,7 @@ import { Image } from "expo-image";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { resolverFoto } from "../data/fotos";
-import { RISCO, SENTIDO, STATUS, TIPO, palette, radius, shadows, spacing } from "../theme";
+import { RISCO, SENTIDO, STATUS, TIPO, radius, shadows, spacing, useAppTheme } from "../theme";
 import type { Ocorrencia } from "../types";
 import { formatarKm, formatarTempoRelativo } from "../utils/format";
 import { AppText } from "./AppText";
@@ -21,6 +21,7 @@ type Props = {
  * mais importante para o supervisor priorizar o atendimento.
  */
 export function OcorrenciaCard({ ocorrencia, onPress }: Props) {
+  const { palette } = useAppTheme();
   const risco = RISCO[ocorrencia.risco];
   const tipo = TIPO[ocorrencia.tipo];
   const foto = resolverFoto(ocorrencia.fotoUri);
@@ -30,7 +31,7 @@ export function OcorrenciaCard({ ocorrencia, onPress }: Props) {
       onPress={() => onPress(ocorrencia)}
       accessibilityRole="button"
       accessibilityLabel={`${ocorrencia.titulo}. Risco ${risco.label}. ${STATUS[ocorrencia.status].label}.`}
-      style={({ pressed }) => [styles.card, pressed && styles.pressionado]}
+      style={({ pressed }) => [styles.card, { backgroundColor: palette.surface, borderColor: palette.border }, pressed && styles.pressionado]}
     >
       <View style={[styles.faixaRisco, { backgroundColor: risco.solido }]} />
 
@@ -39,13 +40,13 @@ export function OcorrenciaCard({ ocorrencia, onPress }: Props) {
           {foto ? (
             <Image
               source={foto}
-              style={styles.miniatura}
+              style={[styles.miniatura, { backgroundColor: palette.background }]}
               contentFit="cover"
               transition={200}
               accessibilityLabel={`Foto da ocorrência ${ocorrencia.protocolo}`}
             />
           ) : (
-            <View style={[styles.miniatura, styles.miniaturaVazia]}>
+            <View style={[styles.miniatura, styles.miniaturaVazia, { backgroundColor: palette.background, borderColor: palette.border }]}>
               <Ionicons name="image-outline" size={20} color={palette.textMuted} />
             </View>
           )}
@@ -93,10 +94,8 @@ export function OcorrenciaCard({ ocorrencia, onPress }: Props) {
 const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    backgroundColor: palette.surface,
     borderRadius: radius.lg,
     borderWidth: 1,
-    borderColor: palette.border,
     overflow: "hidden",
     ...shadows.sm,
   },
@@ -120,13 +119,11 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: radius.md,
-    backgroundColor: palette.background,
   },
   miniaturaVazia: {
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: palette.border,
   },
   cabecalho: {
     flex: 1,
