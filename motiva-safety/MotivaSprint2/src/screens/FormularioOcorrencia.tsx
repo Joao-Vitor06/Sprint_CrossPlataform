@@ -352,7 +352,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
   }, [alterado, navigation]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: palette.background }]}>
       <ScreenHeader
         sobretitulo={edicao ? original?.protocolo : "Novo registro"}
         titulo={edicao ? "Editar ocorrência" : "Nova ocorrência"}
@@ -385,7 +385,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
 
           <View style={styles.secao}>
             <AppText variant="overline" color={palette.textSecondary}>
-              Tipo do problema *
+              Tipo de vegetação / impacto *
             </AppText>
             <SeletorTipo selecionado={dados.tipo} onSelecionar={(tipo) => alterar("tipo", tipo)} />
           </View>
@@ -393,7 +393,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
           <Input
             label="Título"
             obrigatorio
-            placeholder="Ex: Buraco profundo na faixa da direita"
+            placeholder="Ex: Vegetação acima do limite na faixa de domínio"
             value={dados.titulo}
             onChangeText={(texto) => alterar("titulo", texto)}
             erro={erros.titulo}
@@ -527,7 +527,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
           </View>
 
           {dados.risco === "alto" ? (
-            <View style={styles.avisoAlto}>
+            <View style={[styles.avisoAlto, { backgroundColor: palette.dangerSoft, borderLeftColor: palette.danger }]}>
               <Ionicons name="warning" size={18} color={colors.red600} />
               <AppText variant="caption" color={colors.red600} style={styles.flex}>
                 Ocorrências de alto risco entram na fila de urgência e notificam o Centro de
@@ -536,7 +536,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
             </View>
           ) : null}
 
-          <View style={styles.rodapeInfo}>
+          <View style={[styles.rodapeInfo, { backgroundColor: palette.surfaceMuted }]}>
             <Ionicons name="time-outline" size={16} color={palette.textMuted} />
             <AppText variant="caption" color={palette.textMuted} style={styles.flex}>
               {edicao
@@ -546,7 +546,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
           </View>
         </ScrollView>
 
-        <View style={[styles.barraSalvar, { paddingBottom: insets.bottom + spacing.md }]}>
+        <View style={[styles.barraSalvar, { backgroundColor: palette.surface, borderTopColor: palette.border, paddingBottom: insets.bottom + spacing.md }]}>
           <Button
             titulo={edicao ? "Salvar alterações" : "Registrar ocorrência"}
             icone="checkmark"
@@ -580,7 +580,6 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: palette.background,
   },
   flex: {
     flex: 1,
@@ -603,7 +602,6 @@ const styles = StyleSheet.create({
   botaoGps: {
     width: 50,
     borderRadius: radius.md,
-    backgroundColor: palette.action,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -614,9 +612,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-start",
     gap: spacing.md,
-    backgroundColor: colors.red50,
     borderLeftWidth: 4,
-    borderLeftColor: colors.red500,
     borderRadius: radius.sm,
     padding: spacing.lg,
   },
@@ -624,16 +620,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-start",
     gap: spacing.sm,
-    backgroundColor: palette.surfaceMuted,
     borderRadius: radius.sm,
     padding: spacing.md,
   },
   barraSalvar: {
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.md,
-    backgroundColor: palette.surface,
     borderTopWidth: 1,
-    borderTopColor: palette.border,
     ...shadows.lg,
   },
 });
