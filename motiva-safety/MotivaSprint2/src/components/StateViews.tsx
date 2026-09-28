@@ -2,7 +2,7 @@ import { ComponentProps, useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import { colors, palette, radius, spacing } from "../theme";
+import { colors, radius, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 import { Button } from "./Button";
 
@@ -19,10 +19,10 @@ type EstadoProps = {
  * quando a busca ou os filtros não retornam resultado, com textos diferentes.
  */
 export function EmptyState({ icone, titulo, descricao, acao, acaoSecundaria }: EstadoProps) {
+  const { palette } = useAppTheme();
   return (
     <View style={styles.container}>
-      <View style={[styles.circulo, { backgroundColor: colors.blue50 }]}>
-        <Ionicons name={icone} size={30} color={palette.action} />
+      <View style={[styles.circulo, { backgroundColor: palette.actionSoft }]}>\n        <Ionicons name={icone} size={30} color={palette.action} />
       </View>
 
       <AppText variant="subtitle" style={styles.titulo}>
@@ -56,10 +56,10 @@ export function ErrorState({
   descricao: string;
   onTentarNovamente: () => void;
 }) {
+  const { palette } = useAppTheme();
   return (
     <View style={styles.container}>
-      <View style={[styles.circulo, { backgroundColor: colors.red50 }]}>
-        <Ionicons name="cloud-offline-outline" size={30} color={palette.danger} />
+      <View style={[styles.circulo, { backgroundColor: palette.dangerSoft }]}>\n        <Ionicons name="cloud-offline-outline" size={30} color={palette.danger} />
       </View>
 
       <AppText variant="subtitle" style={styles.titulo}>
@@ -81,6 +81,7 @@ export function ErrorState({
 
 /** Bloco cinza que pulsa enquanto os dados carregam. */
 function Skeleton({ largura, altura, raio = radius.sm }: { largura: number | `${number}%`; altura: number; raio?: number }) {
+  const { palette } = useAppTheme();
   const pulso = useRef(new Animated.Value(0.4)).current;
 
   useEffect(() => {
@@ -119,10 +120,11 @@ function Skeleton({ largura, altura, raio = radius.sm }: { largura: number | `${
 
 /** Esqueleto da lista de ocorrências, exibido no carregamento inicial. */
 export function SkeletonList({ quantidade = 4 }: { quantidade?: number }) {
+  const { palette } = useAppTheme();
   return (
     <View style={styles.skeletonLista}>
       {Array.from({ length: quantidade }).map((_, indice) => (
-        <View key={indice} style={styles.skeletonCard}>
+        <View key={indice} style={[styles.skeletonCard, { backgroundColor: palette.surface, borderColor: palette.border }]}>
           <Skeleton largura={56} altura={56} raio={radius.md} />
           <View style={styles.skeletonTextos}>
             <Skeleton largura="70%" altura={14} />
@@ -168,10 +170,8 @@ const styles = StyleSheet.create({
   skeletonCard: {
     flexDirection: "row",
     gap: spacing.md,
-    backgroundColor: palette.surface,
     borderRadius: radius.lg,
     borderWidth: 1,
-    borderColor: palette.border,
     padding: spacing.lg,
   },
   skeletonTextos: {
