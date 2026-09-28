@@ -139,7 +139,7 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
   const proximosStatus = TRANSICOES[ocorrencia.status];
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: palette.background }]}>
       <ScreenHeader
         sobretitulo={ocorrencia.protocolo}
         titulo="Detalhes"
@@ -513,7 +513,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: radius.sm,
-    backgroundColor: palette.background,
     alignItems: "center",
     justifyContent: "center",
   },
