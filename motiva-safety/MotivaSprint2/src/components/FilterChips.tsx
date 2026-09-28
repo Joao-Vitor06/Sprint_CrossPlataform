@@ -1,6 +1,6 @@
 import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 
-import { palette, radius, spacing } from "../theme";
+import { radius, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 
 export type Chip<T extends string> = {
@@ -27,6 +27,7 @@ export function FilterChips<T extends string>({
   onSelecionar,
   rolavel = false,
 }: Props<T>) {
+  const { palette } = useAppTheme();
   const conteudo = opcoes.map((opcao) => {
     const ativo = opcao.valor === selecionado;
     const cor = opcao.cor ?? palette.action;
@@ -40,6 +41,7 @@ export function FilterChips<T extends string>({
         accessibilityLabel={opcao.label}
         style={({ pressed }) => [
           styles.chip,
+          { backgroundColor: palette.surface, borderColor: palette.border },
           ativo && { backgroundColor: cor, borderColor: cor },
           pressed && styles.pressionado,
         ]}
@@ -97,8 +99,6 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: palette.border,
-    backgroundColor: palette.surface,
   },
   pressionado: {
     opacity: 0.75,
