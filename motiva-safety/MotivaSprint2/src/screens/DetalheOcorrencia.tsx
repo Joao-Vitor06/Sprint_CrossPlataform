@@ -26,9 +26,9 @@ import {
   STATUS,
   TIPO,
   TRANSICOES,
-  palette,
   radius,
   spacing,
+  useAppTheme,
 } from "../theme";
 import type { StatusOcorrencia } from "../types";
 import { formatarCoordenadas, formatarDataHora, formatarKm } from "../utils/format";
@@ -42,9 +42,10 @@ function LinhaInfo({
   rotulo: string;
   valor: string;
 }) {
+  const { palette } = useAppTheme();
   return (
     <View style={styles.linhaInfo}>
-      <View style={styles.linhaIcone}>
+      <View style={[styles.linhaIcone, { backgroundColor: palette.background }]}>
         <Ionicons name={icone} size={16} color={palette.textSecondary} />
       </View>
       <View style={styles.linhaTextos}>
@@ -65,6 +66,7 @@ function LinhaInfo({
  * só aparece o que é válido a partir do status atual.
  */
 export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
+  const { palette } = useAppTheme();
   const { obter, mudarStatus, salvando } = useOcorrencias();
   const { mostrar } = useToast();
   const insets = useSafeAreaInsets();
@@ -119,7 +121,7 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
   // A ocorrência some da memória se a lista for esvaziada com esta tela aberta.
   if (!ocorrencia) {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: palette.background }]}>
         <ScreenHeader titulo="Detalhes" onVoltar={navigation.goBack} />
         <EmptyState
           icone="help-circle-outline"
@@ -159,13 +161,13 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
         {foto ? (
           <Image
             source={foto}
-            style={styles.foto}
+            style={[styles.foto, { backgroundColor: palette.surface }]}
             contentFit="cover"
             transition={250}
             accessibilityLabel={`Evidência da ocorrência ${ocorrencia.protocolo}`}
           />
         ) : (
-          <View style={styles.semFoto}>
+          <View style={[styles.semFoto, { borderColor: palette.borderStrong, backgroundColor: palette.surface }]}>
             <Ionicons name="image-outline" size={28} color={palette.textMuted} />
             <AppText variant="bodySm" color={palette.textSecondary}>
               Nenhuma evidência anexada
@@ -206,18 +208,18 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
 
         <Card titulo="Localização">
           <LinhaInfo icone="git-branch-outline" rotulo="Rodovia" valor={ocorrencia.rodovia} />
-          <View style={styles.divisor} />
+          <View style={[styles.divisor, { backgroundColor: palette.background }]} />
           <LinhaInfo
             icone="navigate-outline"
             rotulo="Trecho"
             valor={`${formatarKm(ocorrencia.km)} · ${SENTIDO[ocorrencia.sentido].label}`}
           />
-          <View style={styles.divisor} />
+          <View style={[styles.divisor, { backgroundColor: palette.background }]} />
           <LinhaInfo icone="pin-outline" rotulo="Referência" valor={ocorrencia.referencia} />
 
           {ocorrencia.latitude !== undefined && ocorrencia.longitude !== undefined ? (
             <>
-              <View style={styles.divisor} />
+              <View style={[styles.divisor, { backgroundColor: palette.background }]} />
               <LinhaInfo
                 icone="locate-outline"
                 rotulo="Coordenadas GPS"
@@ -234,7 +236,7 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
             </>
           ) : (
             <>
-              <View style={styles.divisor} />
+              <View style={[styles.divisor, { backgroundColor: palette.background }]} />
               <View style={styles.semGps}>
                 <Ionicons name="alert-circle-outline" size={16} color={palette.textMuted} />
                 <AppText variant="caption" color={palette.textMuted} style={styles.faixaTexto}>
@@ -265,7 +267,7 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
               </AppText>
             </View>
           </View>
-          <View style={styles.divisor} />
+          <View style={[styles.divisor, { backgroundColor: palette.background }]} />
           <AppText variant="overline" color={palette.textMuted}>Histórico de intervenções</AppText>
           {ocorrencia.intervencoes.length === 0 ? (
             <AppText variant="caption" color={palette.textMuted}>
@@ -274,7 +276,7 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
           ) : (
             ocorrencia.intervencoes.map((intervencao) => (
               <View key={intervencao.id} style={styles.intervencao}>
-                <View style={styles.intervencaoIcone}>
+                <View style={[styles.intervencaoIcone, { backgroundColor: palette.actionSoft }]}>
                   <Ionicons name="cut-outline" size={16} color={palette.action} />
                 </View>
                 <View style={styles.acaoTextos}>
@@ -296,13 +298,13 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
 
         <Card titulo="Registro">
           <LinhaInfo icone="person-outline" rotulo="Responsável" valor={ocorrencia.responsavel} />
-          <View style={styles.divisor} />
+          <View style={[styles.divisor, { backgroundColor: palette.background }]} />
           <LinhaInfo
             icone="calendar-outline"
             rotulo="Registrada em"
             valor={formatarDataHora(ocorrencia.criadaEm)}
           />
-          <View style={styles.divisor} />
+          <View style={[styles.divisor, { backgroundColor: palette.background }]} />
           <LinhaInfo
             icone="refresh-outline"
             rotulo="Última atualização"
@@ -359,7 +361,7 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
                 accessibilityLabel={rotulo.titulo}
                 style={({ pressed }) => [
                   styles.acao,
-                  principal && { backgroundColor: config.solido, borderColor: config.solido },
+                  { backgroundColor: principal ? config.solido : palette.surface, borderColor: principal ? config.solido : palette.border },
                   pressed && styles.pressionado,
                   salvando && styles.desabilitado,
                 ]}
@@ -435,7 +437,6 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: palette.background,
   },
   conteudo: {
     padding: spacing.lg,
@@ -445,15 +446,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 240,
     borderRadius: radius.lg,
-    backgroundColor: palette.surface,
   },
   semFoto: {
     height: 160,
     borderRadius: radius.lg,
     borderWidth: 1.5,
     borderStyle: "dashed",
-    borderColor: palette.borderStrong,
-    backgroundColor: palette.surface,
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.xs,
@@ -502,7 +500,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: radius.sm,
-    backgroundColor: palette.actionSoft,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -554,7 +551,6 @@ const styles = StyleSheet.create({
   linhaTrilha: {
     flex: 1,
     width: 2,
-    backgroundColor: palette.border,
     marginVertical: spacing.xs,
   },
   eventoTextos: {
@@ -573,9 +569,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: spacing.md,
-    backgroundColor: palette.surface,
     borderWidth: 1,
-    borderColor: palette.border,
     borderRadius: radius.lg,
     padding: spacing.lg,
   },
