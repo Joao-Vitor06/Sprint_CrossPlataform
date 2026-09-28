@@ -329,7 +329,10 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
         accessibilityLabel="Registrar nova ocorrência"
         style={({ pressed }) => [
           styles.fab,
-          { bottom: insets.bottom + spacing.xl },
+          {
+            bottom: insets.bottom + spacing.xl,
+            backgroundColor: palette.action,
+          },
           pressed && styles.fabPressionado,
         ]}
       >
