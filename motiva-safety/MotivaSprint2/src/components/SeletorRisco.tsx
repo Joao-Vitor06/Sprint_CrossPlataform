@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, View } from "react-native";
 
-import { RISCO, palette, radius, spacing } from "../theme";
+import { RISCO, radius, spacing, useAppTheme } from "../theme";
 import type { NivelRisco } from "../types";
 import { AppText } from "./AppText";
 
@@ -18,6 +18,7 @@ const NIVEIS: NivelRisco[] = ["baixo", "medio", "alto"];
  * o prazo de atendimento, e o operador precisa saber o que está acionando.
  */
 export function SeletorRisco({ selecionado, onSelecionar }: Props) {
+  const { palette } = useAppTheme();
   const config = RISCO[selecionado];
 
   return (
@@ -52,7 +53,7 @@ export function SeletorRisco({ selecionado, onSelecionar }: Props) {
         })}
       </View>
 
-      <View style={[styles.explicacao, { backgroundColor: config.fundo }]}>
+      <View style={[styles.explicacao, { backgroundColor: config.fundo, borderColor: config.solido }]}>
         <AppText variant="caption" color={config.cor}>
           {config.descricao}
         </AppText>
@@ -78,8 +79,6 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     borderRadius: radius.md,
     borderWidth: 1.5,
-    borderColor: palette.border,
-    backgroundColor: palette.surface,
   },
   pressionado: {
     opacity: 0.75,
