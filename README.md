@@ -146,7 +146,7 @@ O tema escuro utiliza superfícies azul-marinho e cinza profundo, mantendo o azu
 ### Estrutura principal
 
 ```text
-MotivaSprint2/
+MotivaSprint4/
 ├── App.tsx
 ├── app.json
 ├── eas.json
@@ -258,7 +258,7 @@ A automação não elimina a validação humana. O aplicativo continua como cama
 
 A Sprint 3 teve **20 testes manuais documentados**, incluindo fluxos principais, secundários, erros, estados vazios, foto, GPS, persistência e permissões.
 
-[TESTES_SPRINT3.md](./motiva-safety/MotivaSprint2/TESTES_SPRINT3.md)
+[TESTES_SPRINT3.md](./motiva-safety/MotivaSprint4/TESTES_SPRINT3.md)
 
 ### Sprint 4 — regressão final
 
@@ -301,7 +301,7 @@ O vídeo deve ter **até 5 minutos** e contar com protagonismo dos integrantes d
 
 Roteiro:
 
-[ROTEIRO_VIDEO.md](./motiva-safety/MotivaSprint2/ROTEIRO_VIDEO.md)
+[ROTEIRO_VIDEO.md](./motiva-safety/MotivaSprint4/ROTEIRO_VIDEO.md)
 
 ### Estrutura sugerida
 
@@ -426,7 +426,7 @@ A Sprint 4 foi utilizada para aprofundar a aderência ao problema da Motiva, mel
 
 ```bash
 git clone https://github.com/Joao-Vitor06/Sprint_CrossPlataform.git
-cd Sprint_CrossPlataform/motiva-safety/MotivaSprint2
+cd Sprint_CrossPlataform/motiva-safety/MotivaSprint4
 npm install
 ```
 
