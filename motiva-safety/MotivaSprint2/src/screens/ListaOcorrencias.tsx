@@ -256,7 +256,7 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
                 fundo={RISCO.alto.fundo}
                 icone="flame"
                 ativo={filtroRisco === "alto"}
-                onPress={() => setFiltroRisco((atual) => (atual === "alto" ? "todos" : "alto"))
+                onPress={() => setFiltroRisco((atual) => (atual === "alto" ? "todos" : "alto"))}
               />
               <StatCard
                 valor={indicadores.emTratamento}
