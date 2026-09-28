@@ -75,9 +75,9 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
 
   const indicadores = useMemo(
     () => ({
-      alto: ocorrencias.filter((o) => o.risco === "alto").length,
-      abertas: ocorrencias.filter((o) => o.status !== "resolvida").length,
-      resolvidas: ocorrencias.filter((o) => o.status === "resolvida").length,
+      acimaLimite: ocorrencias.filter((o) => o.alturaAtualCm > o.limiteCm).length,
+      emTratamento: ocorrencias.filter((o) => o.status !== "resolvida").length,
+      conformes: ocorrencias.filter((o) => o.alturaAtualCm <= o.limiteCm).length,
     }),
     [ocorrencias]
   );
@@ -210,7 +210,7 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
         <SearchBar
           valor={busca}
           onChange={setBusca}
-          placeholder="Buscar por rodovia, trecho ou protocolo"
+          placeholder="Buscar por rodovia, trecho ou vegetação"
         />
       </ScreenHeader>
 
@@ -250,19 +250,17 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
           <View style={styles.painel}>
             <View style={styles.indicadores}>
               <StatCard
-                valor={indicadores.alto}
-                label="Alto risco"
+                valor={indicadores.acimaLimite}
+                label="Acima do limite"
                 cor={RISCO.alto.cor}
                 fundo={RISCO.alto.fundo}
                 icone="flame"
                 ativo={filtroRisco === "alto"}
-                onPress={() =>
-                  setFiltroRisco((atual) => (atual === "alto" ? "todos" : "alto"))
-                }
+                onPress={() => setFiltroRisco((atual) => (atual === "alto" ? "todos" : "alto"))}
               />
               <StatCard
-                valor={indicadores.abertas}
-                label="Em andamento"
+                valor={indicadores.emTratamento}
+                label="Em tratamento"
                 cor={STATUS.aberta.cor}
                 fundo={STATUS.aberta.fundo}
                 icone="hourglass"
@@ -272,14 +270,14 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
                 }
               />
               <StatCard
-                valor={indicadores.resolvidas}
-                label="Resolvidas"
+                valor={indicadores.conformes}
+                label="Dentro do limite"
                 cor={STATUS.resolvida.cor}
                 fundo={STATUS.resolvida.fundo}
                 icone="checkmark-done"
-                ativo={filtroStatus === "resolvida"}
+                ativo={filtroRisco === "baixo"}
                 onPress={() =>
-                  setFiltroStatus((atual) => (atual === "resolvida" ? "todos" : "resolvida"))
+                  setFiltroRisco((atual) => (atual === "baixo" ? "todos" : "baixo"))
                 }
               />
             </View>
@@ -384,7 +382,7 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
           mostrar({
             tipo: "sucesso",
             titulo: "Exemplos restaurados",
-            descricao: "As 14 ocorrências de demonstração voltaram para a lista.",
+            descricao: "As ocorrências de vegetação de demonstração voltaram para a lista.",
           });
         }}
       />

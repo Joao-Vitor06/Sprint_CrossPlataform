@@ -81,14 +81,10 @@ export const STATUS: Record<StatusOcorrencia, VisualConfig & { icone: IoniconNam
 };
 
 export const TIPO: Record<TipoOcorrencia, { label: string; icone: MdiName }> = {
-  vegetacao: { label: "Vegetação", icone: "tree" },
-  pavimento: { label: "Pavimento", icone: "road-variant" },
-  sinalizacao: { label: "Sinalização", icone: "sign-caution" },
-  iluminacao: { label: "Iluminação", icone: "lightbulb-on-outline" },
-  animal: { label: "Animal na pista", icone: "cow" },
-  drenagem: { label: "Drenagem", icone: "water-alert" },
-  obstaculo: { label: "Obstáculo", icone: "traffic-cone" },
-  acostamento: { label: "Acostamento", icone: "car-brake-alert" },
+  vegetacao_alta: { label: "Vegetação acima do limite", icone: "grass" },
+  vegetacao_sinalizacao: { label: "Vegetação encobrindo sinalização", icone: "sign-caution" },
+  vegetacao_acostamento: { label: "Vegetação invadindo acostamento", icone: "road-variant" },
+  vegetacao_drenagem: { label: "Vegetação sobre drenagem", icone: "water-alert" },
 };
 
 export const SENTIDO: Record<SentidoRodovia, { label: string; curto: string }> = {

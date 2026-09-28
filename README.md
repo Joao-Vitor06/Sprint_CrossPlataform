@@ -1,4 +1,10 @@
-# Motiva Safety
+# 🌱 Motiva Safety — Sprint 4 / Entrega Final
+
+> **Aplicação mobile para monitoramento e gestão de vegetação nas rodovias.**
+
+A Sprint 4 reposiciona o produto para o problema central do desafio: **monitorar vegetação na faixa de domínio**, registrando evidência, GPS, altura, limite operacional, prioridade e histórico de intervenções.
+
+**Fluxo:** identificar → fotografar → localizar → medir → priorizar → intervir → comprovar → consultar histórico.
 
 Aplicativo mobile desenvolvido para apoiar equipes da Motiva no **registro, acompanhamento e tratamento de ocorrências de segurança em rodovias**.
 
@@ -6,17 +12,33 @@ A aplicação foi construída em **React Native com Expo**, mantendo os fluxos d
 
 > **Status da Sprint:** aplicação funcional para demonstração, com os principais fluxos implementados e testados manualmente.  
 > **Tecnologia:** React Native + Expo + TypeScript  
-> **Versão:** Sprint 3 / preparação para Sprint 4
+> **Versão:** Sprint 4 / Entrega final
 
 ---
 
 ## 1. Visão geral
 
-O Motiva Safety permite que um operador registre uma ocorrência encontrada em campo e que um supervisor acompanhe esses registros, filtre problemas, consulte detalhes e altere o status de atendimento.
+O Motiva Safety permite que uma equipe de campo registre um trecho com vegetação, fotografe, capture GPS, informe a altura medida e o limite operacional e acompanhe a intervenção até a resolução.
 
 O fluxo principal é:
 
 **Registrar ocorrência → consultar lista → abrir detalhe → tramitar status → acompanhar histórico**
+
+
+### 🌱 Especialização em vegetação
+
+Na Sprint 3, o aplicativo funcionava como um gerenciador genérico de ocorrências de segurança. O principal feedback da avaliação foi trazer o desafio da Motiva para o centro do produto.
+
+Na versão final:
+
+- **14/14 ocorrências mockadas são de vegetação**;
+- a ocorrência possui **altura atual** e **limite operacional**;
+- o detalhe mostra se o trecho está acima ou dentro do limite;
+- existem categorias para vegetação alta, vegetação encobrindo sinalização, vegetação invadindo acostamento e vegetação sobre drenagem;
+- o histórico registra intervenções como **roçada, poda e inspeção**;
+- ocorrências resolvidas demonstram **altura antes × altura depois** da intervenção.
+
+O produto passa a responder não apenas "qual é a ocorrência?", mas **"quanto a vegetação está acima do padrão, onde está, qual a prioridade e o que foi feito?"**.
 
 A aplicação também foi preparada para demonstrar situações alternativas, como:
 
@@ -139,17 +161,16 @@ Arquivo principal:
 
 \`src/data/mockData.ts\`
 
-A base contempla ocorrências com diferentes:
+A base contempla 14 ocorrências exclusivamente de vegetação, distribuídas entre:
 
-- tipos;
-- níveis de risco;
-- status;
-- rodovias;
-- quilômetros;
-- responsáveis;
-- situações com e sem foto;
-- situações com e sem coordenadas;
-- históricos de alteração de status.
+- vegetação acima do limite;
+- vegetação encobrindo sinalização;
+- vegetação invadindo acostamento;
+- vegetação sobre drenagem;
+- trechos dentro do padrão;
+- roçada concluída;
+- poda concluída;
+- inspeção sem necessidade de intervenção.
 
 Além da base inicial, o aplicativo permite:
 
@@ -208,37 +229,17 @@ Durante a evolução da Sprint 3, alguns problemas das versões anteriores foram
 
 ---
 
-# 8. Pendências e limitações atuais
+# 8. Estado da entrega final
 
-A versão entregue ainda possui limitações que precisam ser tratadas antes de uma versão conectada ao ambiente real:
+A aplicação está funcional no ambiente de desenvolvimento e preparada para a geração do APK. As pendências desta etapa são exclusivamente de **distribuição e validação final da entrega**:
 
-### Backend
+- geração do APK pelo EAS;
+- instalação e regressão em Android físico;
+- publicação externa do APK;
+- gravação do pitch final;
+- inclusão dos links do APK e do vídeo neste README.
 
-Atualmente não existe uma API ou banco de dados remoto. As ocorrências são persistidas somente no dispositivo através do AsyncStorage.
-
-**Impacto:** dois dispositivos não compartilham automaticamente os mesmos dados.
-
-### Autenticação
-
-Ainda não existe login nem controle de acesso por usuário.
-
-**Impacto:** o responsável pela ocorrência é informado manualmente.
-
-### Mapas
-
-A aplicação possui localização e coordenadas, porém o mapa é aberto através do aplicativo de mapas do dispositivo em vez de possuir um mapa incorporado.
-
-### Imagens
-
-As fotos ainda não passam por uma etapa específica de compressão e redimensionamento.
-
-**Impacto:** o armazenamento local pode crescer rapidamente com muitos registros.
-
-### Testes automatizados
-
-Os testes desta Sprint foram manuais. Ainda não há suíte automatizada de testes unitários ou de integração.
-
----
+A integração com backend remoto, autenticação e sincronização entre dispositivos permanece como evolução de produto e não é necessária para o protótipo acadêmico offline-first desta entrega.
 
 # 9. Plano de ajustes para a Sprint 4
 
@@ -309,6 +310,44 @@ O roteiro foi estruturado para uma demonstração de aproximadamente **2 minutos
 **Link do vídeo:** _https://youtube.com/shorts/ONDTA85zl04?is=oredA9yclh9nRfmM_
 
 ---
+
+# 💼 Plano de negócio
+
+O plano completo está em **[motiva-safety/docs/PLANO_NEGOCIO.md](./motiva-safety/docs/PLANO_NEGOCIO.md)**.
+
+Ele reúne:
+- proposta de valor;
+- público-alvo e personas;
+- modelo B2B SaaS + implantação + serviço gerenciado;
+- premissas de custos;
+- diferenciais;
+- riscos;
+- impacto esperado;
+- indicadores;
+- roadmap para visão computacional.
+
+Os valores financeiros são **premissas acadêmicas para um piloto**, não uma cotação comercial da Motiva.
+
+
+# 📦 APK FINAL
+
+O projeto possui um `eas.json` com perfil `preview` configurado para gerar APK Android.
+
+```bash
+eas build --platform android --profile preview
+```
+
+O APK final deve ser hospedado fora do repositório (EAS Build, GitHub Releases ou Google Drive), conforme a regra da Sprint. **Link do APK: adicionar após o build final.**
+
+Para instalar: baixe o APK no Android, autorize a instalação quando solicitado e abra o Motiva Safety.
+
+# 🎬 Vídeo final
+
+**Link do vídeo final: adicionar após a gravação.**
+
+O vídeo deve ter até 5 minutos, com protagonismo dos integrantes, apresentando problema, solução, APK instalado, demonstração, plano de negócio e impacto.
+
+
 
 # 11. Como executar o projeto
 
@@ -395,3 +434,30 @@ A versão atual do Motiva Safety possui:
 ### Próximo marco
 
 **Sprint 4 → integração e preparação para a versão final do Motiva Safety.**
+
+# 🏁 Consolidação das quatro Sprints
+
+| Sprint | Evolução |
+|---|---|
+| **Sprint 1** | Problema, proposta e prototipação inicial |
+| **Sprint 2** | Estrutura mobile, navegação, componentes e identidade visual |
+| **Sprint 3** | Protótipo funcional completo, persistência, GPS, foto, tramitação, histórico e 20 testes manuais |
+| **Sprint 4** | Especialização em vegetação, métricas de altura/limite, histórico de intervenções, plano de negócio e preparação do APK final |
+
+**Resultado da Sprint 3:** 9/10.  
+**Principal correção para a Sprint 4:** retirar o caráter genérico de "ocorrências de segurança" e colocar **vegetação** como núcleo do produto.
+
+### Checklist da entrega final
+
+- [ ] Gerar APK via EAS.
+- [ ] Instalar e validar o APK em Android físico.
+- [ ] Executar os fluxos principais no APK.
+- [ ] Validar câmera e GPS.
+- [ ] Validar persistência.
+- [ ] Validar erro, vazio e busca sem resultado.
+- [ ] Publicar o APK fora do repositório.
+- [ ] Adicionar link do APK neste README.
+- [ ] Gravar vídeo final de até 5 minutos.
+- [ ] Adicionar link do vídeo.
+- [ ] Revisar participação do grupo no histórico de commits.
+

@@ -77,7 +77,19 @@ export async function carregarOcorrencias(): Promise<Ocorrencia[]> {
 
   try {
     const lista = JSON.parse(bruto) as Ocorrencia[];
-    return Array.isArray(lista) ? lista : [];
+    if (!Array.isArray(lista)) return [];
+
+    // Migração da Sprint 3: bases antigas tinham ocorrências genéricas
+    // (pavimento, animais, iluminação etc.). A versão final é especializada
+    // em vegetação; ao detectar a base antiga, substituímos pelos exemplos novos.
+    const baseAntiga = lista.some((item) => !String(item?.tipo ?? "").startsWith("vegetacao_"));
+    if (baseAntiga) {
+      const exemplos = criarOcorrenciasMock();
+      await AsyncStorage.setItem(CHAVE_OCORRENCIAS, JSON.stringify(exemplos));
+      return exemplos;
+    }
+
+    return lista;
   } catch {
     // Dado corrompido não pode travar o app: começa de uma lista vazia.
     await AsyncStorage.removeItem(CHAVE_OCORRENCIAS);
