@@ -72,7 +72,7 @@ export function OcorrenciaCard({ ocorrencia, onPress }: Props) {
           </View>
         </View>
 
-        <View style={styles.rodape}>
+        <View style={[styles.rodape, { borderTopColor: palette.background }]}>
           <View style={styles.selos}>
             <View style={[styles.seloRisco, { backgroundColor: risco.fundo }]}>
               <AppText variant="caption" color={risco.cor}>
@@ -147,7 +147,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: spacing.sm,
     borderTopWidth: 1,
-    borderTopColor: palette.background,
     paddingTop: spacing.md,
   },
   selos: {
