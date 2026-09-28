@@ -3,7 +3,7 @@ import { Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
-import { palette, radius, shadows, spacing } from "../theme";
+import { radius, shadows, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 
 export type Opcao<T extends string> = {
@@ -31,6 +31,7 @@ export function OptionSheet<T extends string>({
   onSelecionar,
   onFechar,
 }: Props<T>) {
+  const { palette } = useAppTheme();
   const insets = useSafeAreaInsets();
 
   return (
@@ -43,7 +44,7 @@ export function OptionSheet<T extends string>({
     >
       <Pressable style={styles.fundo} onPress={onFechar} accessibilityLabel="Fechar" />
 
-      <View style={[styles.folha, { paddingBottom: insets.bottom + spacing.xl }]}>
+      <View style={[styles.folha, { backgroundColor: palette.surface, paddingBottom: insets.bottom + spacing.xl }]}>
         <View style={styles.puxador} />
 
         <AppText variant="subtitle" style={styles.titulo}>
@@ -64,7 +65,7 @@ export function OptionSheet<T extends string>({
                 accessibilityState={{ selected: ativo }}
                 style={({ pressed }) => [
                   styles.item,
-                  ativo && styles.itemAtivo,
+                  { backgroundColor: ativo ? palette.actionSoft : "transparent" },
                   pressed && styles.pressionado,
                 ]}
               >
@@ -108,7 +109,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(15, 23, 42, 0.5)",
   },
   folha: {
-    backgroundColor: palette.surface,
     borderTopLeftRadius: radius.xl,
     borderTopRightRadius: radius.xl,
     paddingHorizontal: spacing.lg,
@@ -120,7 +120,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 4,
     borderRadius: radius.pill,
-    backgroundColor: palette.borderStrong,
     alignSelf: "center",
     marginBottom: spacing.lg,
   },
@@ -135,9 +134,6 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.md,
     borderRadius: radius.md,
-  },
-  itemAtivo: {
-    backgroundColor: palette.actionSoft,
   },
   pressionado: {
     opacity: 0.7,
