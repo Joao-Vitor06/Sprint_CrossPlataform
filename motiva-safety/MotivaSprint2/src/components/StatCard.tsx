@@ -2,7 +2,7 @@ import { ComponentProps } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import { palette, radius, spacing } from "../theme";
+import { radius, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 
 type Props = {
@@ -18,6 +18,7 @@ type Props = {
 
 /** Indicador do painel da lista. Clicar aplica o filtro equivalente. */
 export function StatCard({ valor, label, cor, fundo, icone, onPress, ativo = false }: Props) {
+  const { palette } = useAppTheme();
   const conteudo = (
     <>
       <View style={[styles.icone, { backgroundColor: fundo }]}>
@@ -35,7 +36,7 @@ export function StatCard({ valor, label, cor, fundo, icone, onPress, ativo = fal
   );
 
   if (!onPress) {
-    return <View style={[styles.card, ativo && { borderColor: cor }]}>{conteudo}</View>;
+    return <View style={[styles.card, { backgroundColor: palette.surface, borderColor: ativo ? cor : palette.border }, ativo && { backgroundColor: fundo }]}>{conteudo}</View>;
   }
 
   return (
@@ -46,7 +47,8 @@ export function StatCard({ valor, label, cor, fundo, icone, onPress, ativo = fal
       accessibilityLabel={`${label}: ${valor}`}
       style={({ pressed }) => [
         styles.card,
-        ativo && { borderColor: cor, backgroundColor: fundo },
+        { backgroundColor: palette.surface, borderColor: ativo ? cor : palette.border },
+        ativo && { backgroundColor: fundo },
         pressed && styles.pressionado,
       ]}
     >
@@ -58,10 +60,8 @@ export function StatCard({ valor, label, cor, fundo, icone, onPress, ativo = fal
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    backgroundColor: palette.surface,
     borderRadius: radius.md,
     borderWidth: 1.5,
-    borderColor: palette.border,
     padding: spacing.md,
     gap: spacing.sm,
     minHeight: 88,
