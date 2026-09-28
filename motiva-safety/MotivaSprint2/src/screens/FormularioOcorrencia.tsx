@@ -33,15 +33,15 @@ import { formatarCoordenadas, interpretarKm } from "../utils/format";
 
 /** Rodovias mais registradas, oferecidas como atalho para não digitar tudo. */
 const RODOVIAS_FREQUENTES = [
-  "SP-348 Bandeirantes",
-  "SP-330 Anhanguera",
-  "SP-070 Ayrton Senna",
-  "SP-280 Castello Branco",
-  "SP-021 Rodoanel Mário Covas",
-  "SP-310 Washington Luís",
-  "SP-300 Marechal Rondon",
-  "SP-255",
-  "SP-127",
+  { valor: "SP-348 Bandeirantes", label: "SP-348 Bandeirantes" },
+  { valor: "SP-330 Anhanguera", label: "SP-330 Anhanguera" },
+  { valor: "SP-300 Dom Gabriel Paulino Bueno Couto", label: "SP-300 Dom Gabriel" },
+  { valor: "SP-280 Castello Branco", label: "SP-280 Castello Branco" },
+  { valor: "SP-127 Antônio Romano Schincariol", label: "SP-127 Romano Schincariol" },
+  { valor: "SP-127 Francisco da Silva Pontes", label: "SP-127 Francisco da Silva Pontes" },
+  { valor: "SP-255 João Mellão", label: "SP-255 João Mellão" },
+  { valor: "SP-270 Raposo Tavares", label: "SP-270 Raposo Tavares" },
+  { valor: "SP-258 Francisco Alves Negrão", label: "SP-258 Francisco Alves Negrão" },
 ];
 
 const CHIPS_SENTIDO: Chip<SentidoRodovia>[] = [
@@ -423,7 +423,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
             />
 
             <FilterChips
-              opcoes={RODOVIAS_FREQUENTES.map((rodovia) => ({ valor: rodovia, label: rodovia }))}
+              opcoes={RODOVIAS_FREQUENTES}
               selecionado={dados.rodovia}
               onSelecionar={(rodovia) => alterar("rodovia", rodovia)}
               rolavel
@@ -483,7 +483,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
           <View style={styles.linhaMedidas}>
             <View style={styles.medida}>
               <Input
-                label="Altura da vegetação"
+                label="Altura medida"
                 obrigatorio
                 placeholder="Ex: 150"
                 keyboardType="decimal-pad"
@@ -495,7 +495,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
             </View>
             <View style={styles.medida}>
               <Input
-                label="Limite do trecho"
+                label="Limite operacional"
                 obrigatorio
                 placeholder="Ex: 100"
                 keyboardType="decimal-pad"
