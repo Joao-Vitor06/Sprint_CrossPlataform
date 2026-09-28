@@ -3,7 +3,7 @@ import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 
 import { resolverFoto } from "../data/fotos";
-import { palette, radius, spacing } from "../theme";
+import { radius, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 import { Button } from "./Button";
 
@@ -118,14 +118,11 @@ const styles = StyleSheet.create({
     backgroundColor: palette.surface,
   },
   vazioErro: {
-    borderColor: palette.danger,
-    backgroundColor: palette.dangerSoft,
   },
   icone: {
     width: 52,
     height: 52,
     borderRadius: radius.pill,
-    backgroundColor: palette.actionSoft,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: spacing.xs,
@@ -151,14 +148,11 @@ const styles = StyleSheet.create({
   preenchido: {
     borderRadius: radius.lg,
     borderWidth: 1,
-    borderColor: palette.border,
-    backgroundColor: palette.surface,
     overflow: "hidden",
   },
   previa: {
     width: "100%",
     height: 220,
-    backgroundColor: palette.background,
   },
   acoes: {
     flexDirection: "row",
@@ -173,7 +167,6 @@ const styles = StyleSheet.create({
     width: 46,
     height: 46,
     borderRadius: radius.md,
-    backgroundColor: palette.dangerSoft,
     alignItems: "center",
     justifyContent: "center",
   },
