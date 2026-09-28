@@ -30,6 +30,7 @@ export function SeletorFoto({
   onRemover,
   ocupado = false,
 }: Props) {
+  const { palette } = useAppTheme();
   const foto = resolverFoto(fotoUri);
 
   if (foto) {
@@ -66,7 +67,7 @@ export function SeletorFoto({
   }
 
   return (
-    <View style={[styles.vazio, Boolean(erro) && styles.vazioErro]}>
+    <View style={[styles.vazio, { backgroundColor: palette.surface, borderColor: erro ? palette.danger : palette.borderStrong }, Boolean(erro) && styles.vazioErro]}>
       <View style={styles.icone}>
         <Ionicons name="camera-outline" size={26} color={palette.action} />
       </View>
@@ -114,8 +115,6 @@ const styles = StyleSheet.create({
     borderRadius: radius.lg,
     borderWidth: 1.5,
     borderStyle: "dashed",
-    borderColor: palette.borderStrong,
-    backgroundColor: palette.surface,
   },
   vazioErro: {
   },
