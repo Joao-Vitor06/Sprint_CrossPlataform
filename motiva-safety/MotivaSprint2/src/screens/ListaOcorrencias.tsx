@@ -20,7 +20,7 @@ import {
 } from "../components";
 import { useOcorrencias } from "../context/OcorrenciasContext";
 import type { PropsLista } from "../navigation/types";
-import { ORDENACAO, RISCO, STATUS, palette, radius, shadows, spacing } from "../theme";
+import { ORDENACAO, RISCO, STATUS, radius, shadows, spacing, useAppTheme } from "../theme";
 import type { FiltroRisco, FiltroStatus, Ocorrencia, Ordenacao } from "../types";
 import { normalizar } from "../utils/format";
 
@@ -61,6 +61,7 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
     limparTudo,
     restaurarExemplos,
   } = useOcorrencias();
+  const { palette } = useAppTheme();
   const { mostrar } = useToast();
   const insets = useSafeAreaInsets();
 
@@ -190,7 +191,7 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
   const vazio = conteudo();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: palette.background }]}>
       <ScreenHeader
         sobretitulo="Motiva Safety"
         titulo="Ocorrências"
@@ -215,7 +216,7 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
       </ScreenHeader>
 
       {simulandoFalha ? (
-        <View style={styles.avisoDemo}>
+        <View style={[styles.avisoDemo, { backgroundColor: palette.dangerSoft }]}>
           <Ionicons name="flask" size={14} color={palette.danger} />
           <AppText variant="caption" color={palette.danger} style={styles.avisoTexto}>
             Modo demonstração: falha de conexão simulada
@@ -393,13 +394,11 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: palette.background,
   },
   avisoDemo: {
     flexDirection: "row",
     alignItems: "center",
     gap: spacing.sm,
-    backgroundColor: palette.dangerSoft,
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.lg,
   },
@@ -434,7 +433,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: spacing.sm,
-    backgroundColor: palette.action,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.xl,
     borderRadius: radius.pill,
