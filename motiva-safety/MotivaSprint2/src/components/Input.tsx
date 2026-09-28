@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import { colors, palette, radius, semAnelDeFocoWeb, spacing, typography } from "../theme";
+import { colors, radius, semAnelDeFocoWeb, spacing, typography, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 
 type Props = Omit<TextInputProps, "style"> & {
@@ -42,6 +42,7 @@ export function Input({
   value,
   ...rest
 }: Props) {
+  const { palette } = useAppTheme();
   const [focado, setFocado] = useState(false);
   const temErro = Boolean(erro);
 
@@ -79,9 +80,10 @@ export function Input({
           accessibilityLabel={label}
           style={[
             styles.input,
+            { backgroundColor: palette.surface, borderColor: temErro ? palette.danger : focado ? palette.action : palette.border, color: palette.textPrimary },
             multilinha && styles.inputMultilinha,
-            focado && styles.inputFocado,
-            temErro && styles.inputErro,
+            temErro && { backgroundColor: palette.dangerSoft },
+            focado && !temErro && { backgroundColor: palette.actionSoft },
           ]}
         />
         {acessorio}
@@ -119,28 +121,17 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    backgroundColor: palette.surface,
     borderWidth: 1.5,
-    borderColor: palette.border,
     borderRadius: radius.md,
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
     minHeight: 50,
-    color: palette.textPrimary,
     ...typography.body,
     ...semAnelDeFocoWeb,
   },
   inputMultilinha: {
     minHeight: 120,
     paddingTop: spacing.md,
-  },
-  inputFocado: {
-    borderColor: palette.action,
-    backgroundColor: colors.blue50,
-  },
-  inputErro: {
-    borderColor: palette.danger,
-    backgroundColor: colors.red50,
   },
   linhaMensagem: {
     flexDirection: "row",
