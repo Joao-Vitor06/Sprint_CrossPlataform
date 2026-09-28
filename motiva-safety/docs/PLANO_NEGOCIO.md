@@ -267,3 +267,16 @@ O piloto deve ser considerado tecnicamente válido quando a equipe conseguir aco
 **registrar → localizar → medir → priorizar → executar → comprovar → consultar histórico.**
 
 A decisão de escala deve ser baseada nos indicadores coletados durante o piloto e não em estimativas do protótipo.
+
+
+## 11. Aderência ao contexto rodoviário da Motiva
+
+Os exemplos do protótipo foram alinhados à malha rodoviária real administrada por concessionárias da Motiva.
+
+A **Motiva AutoBAn** informa administrar o Sistema Anhanguera-Bandeirantes, incluindo SP-330 Anhanguera, SP-348 Bandeirantes, SP-300 Dom Gabriel Paulino Bueno Couto e SPI-102/330 Adalberto Panzan. citeturn844597search0
+
+A **Motiva SPVias** informa administrar 516 km, incluindo trechos das rodovias SP-280 Castello Branco, SP-255 João Mellão, SP-127 Antônio Romano Schincariol, SP-127 Francisco da Silva Pontes, SP-270 Raposo Tavares e SP-258 Francisco Alves Negrão. citeturn657430search0
+
+Os mocks da aplicação usam nomes e quilômetros compatíveis com esses trechos, incluindo exemplos em SP-127 km 133,9, SP-255 km 240,3, SP-258 km 250,1 e 326,6, SP-270 km 135,3 e SP-280 km 158,3, 208,4 e 278,0. A própria Motiva publicou cronogramas de conservação com esses trechos e quilômetros, além de serviços como roçada, poda e limpeza de placas. citeturn657430search4turn657430search1
+
+Esse alinhamento é importante para o plano de negócio porque evita tratar o problema como um caso genérico de manutenção: a solução está contextualizada em uma operação real de conservação rodoviária.
