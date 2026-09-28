@@ -89,14 +89,11 @@ const ThemeContext = createContext<AppTheme | null>(null);
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const sistema = useColorScheme();
   const [mode, setModeState] = useState<ThemeMode>(sistema === "dark" ? "dark" : "light");
-  const [carregado, setCarregado] = useState(false);
-
   useEffect(() => {
     void AsyncStorage.getItem(CHAVE_TEMA).then((salvo) => {
       if (salvo === "dark" || salvo === "light") {
         setModeState(salvo);
       }
-      setCarregado(true);
     });
   }, []);
 
@@ -118,8 +115,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }),
     [mode, setMode, toggleMode]
   );
-
-  if (!carregado) return null;
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
