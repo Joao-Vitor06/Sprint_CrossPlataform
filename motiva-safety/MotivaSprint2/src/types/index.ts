@@ -1,9 +1,9 @@
 /**
  * Modelo de domínio do Motiva Safety.
  *
- * Uma ocorrência é um problema de segurança encontrado em um trecho de rodovia
- * (vegetação alta, buraco no pavimento, sinalização danificada, etc.) registrado
- * por um operador de campo e acompanhado por um supervisor até a resolução.
+ * A aplicação é especializada em monitoramento de vegetação na faixa de domínio
+ * das rodovias, registrando altura, limite operacional, prioridade e histórico
+ * das intervenções de conservação.
  */
 
 export type NivelRisco = "baixo" | "medio" | "alto";
@@ -11,19 +11,32 @@ export type NivelRisco = "baixo" | "medio" | "alto";
 export type StatusOcorrencia = "aberta" | "em_analise" | "resolvida";
 
 export type TipoOcorrencia =
-  | "vegetacao"
-  | "pavimento"
-  | "sinalizacao"
-  | "iluminacao"
-  | "animal"
-  | "drenagem"
-  | "obstaculo"
-  | "acostamento";
+  | "vegetacao_alta"
+  | "vegetacao_sinalizacao"
+  | "vegetacao_acostamento"
+  | "vegetacao_drenagem";
 
-/** Sentido do trecho, na nomenclatura usada pelas concessionárias de São Paulo. */
+/** Sentido do trecho monitorado. */
 export type SentidoRodovia = "capital" | "interior";
 
-/** Cada mudança de status vira um evento, formando a linha do tempo da ocorrência. */
+export type TipoIntervencao =
+  | "inspecao"
+  | "rocada_programada"
+  | "rocada_executada"
+  | "poda"
+  | "liberacao";
+
+export type IntervencaoVegetacao = {
+  id: string;
+  tipo: TipoIntervencao;
+  em: string;
+  equipe: string;
+  alturaAntesCm?: number;
+  alturaDepoisCm?: number;
+  observacao?: string;
+};
+
+/** Cada mudança de status vira um evento, formando o ciclo de atendimento. */
 export type EventoHistorico = {
   id: string;
   status: StatusOcorrencia;
@@ -42,8 +55,13 @@ export type Ocorrencia = {
   rodovia: string;
   km: number;
   sentido: SentidoRodovia;
-  /** Referência textual do ponto, como "Trevo de Louveira, pista sul". */
+  /** Referência textual do ponto monitorado. */
   referencia: string;
+  /** Altura medida pela equipe/câmera, em centímetros. */
+  alturaAtualCm: number;
+  /** Limite operacional definido para o trecho, em centímetros. */
+  limiteCm: number;
+  /** Prioridade operacional derivada da condição do trecho. */
   risco: NivelRisco;
   status: StatusOcorrencia;
   responsavel: string;
@@ -53,6 +71,7 @@ export type Ocorrencia = {
   latitude?: number;
   longitude?: number;
   historico: EventoHistorico[];
+  intervencoes: IntervencaoVegetacao[];
 };
 
 /** Campos que o operador preenche no formulário. O resto o app gera sozinho. */
@@ -64,6 +83,8 @@ export type DadosFormularioOcorrencia = {
   km: string;
   sentido: SentidoRodovia;
   referencia: string;
+  alturaAtualCm: string;
+  limiteCm: string;
   risco: NivelRisco;
   responsavel: string;
   fotoUri?: string;
