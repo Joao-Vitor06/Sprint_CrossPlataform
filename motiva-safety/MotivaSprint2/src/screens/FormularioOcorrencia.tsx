@@ -27,7 +27,7 @@ import {
 } from "../components";
 import { useOcorrencias } from "../context/OcorrenciasContext";
 import type { PropsFormulario } from "../navigation/types";
-import { SENTIDO, colors, palette, radius, shadows, spacing } from "../theme";
+import { SENTIDO, colors, radius, shadows, spacing, useAppTheme } from "../theme";
 import type { DadosFormularioOcorrencia, SentidoRodovia } from "../types";
 import { formatarCoordenadas, interpretarKm } from "../utils/format";
 
@@ -106,6 +106,7 @@ function validar(dados: DadosFormularioOcorrencia): Erros {
  * cima. Os erros aparecem embaixo de cada campo, e não em um alerta do sistema.
  */
 export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
+  const { palette } = useAppTheme();
   const ocorrenciaId = route.params?.ocorrenciaId;
   const { obter, criar, atualizar, salvando } = useOcorrencias();
   const { mostrar } = useToast();
