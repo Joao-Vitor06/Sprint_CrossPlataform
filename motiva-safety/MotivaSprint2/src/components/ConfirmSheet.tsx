@@ -3,7 +3,7 @@ import { Modal, Pressable, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
-import { palette, radius, shadows, spacing } from "../theme";
+import { radius, shadows, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 import { Button } from "./Button";
 
@@ -40,6 +40,7 @@ export function ConfirmSheet({
   onCancelar,
   carregando = false,
 }: Props) {
+  const { palette } = useAppTheme();
   const insets = useSafeAreaInsets();
 
   return (
@@ -52,8 +53,8 @@ export function ConfirmSheet({
     >
       <Pressable style={styles.fundo} onPress={onCancelar} accessibilityLabel="Fechar" />
 
-      <View style={[styles.folha, { paddingBottom: insets.bottom + spacing.xl }]}>
-        <View style={styles.puxador} />
+      <View style={[styles.folha, { backgroundColor: palette.surface, paddingBottom: insets.bottom + spacing.xl }]}>
+        <View style={[styles.puxador, { backgroundColor: palette.borderStrong }]} />
 
         <View style={[styles.icone, { backgroundColor: fundoIcone }]}>
           <Ionicons name={icone} size={26} color={cor} />
@@ -92,7 +93,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(15, 23, 42, 0.5)",
   },
   folha: {
-    backgroundColor: palette.surface,
     borderTopLeftRadius: radius.xl,
     borderTopRightRadius: radius.xl,
     paddingHorizontal: spacing.xl,
@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 4,
     borderRadius: radius.pill,
-    backgroundColor: palette.borderStrong,
     marginBottom: spacing.lg,
   },
   icone: {
