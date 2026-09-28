@@ -1,4 +1,4 @@
-# 🌱 Motiva Safety — Entrega Final
+# Motiva Safety — Entrega Final
 
 > **Aplicativo mobile para monitoramento e gestão de vegetação na faixa de domínio de rodovias.**
 
@@ -71,7 +71,7 @@ Assim, o produto não registra apenas "um problema": ele registra **medição, l
 
 ---
 
-# 🌙 Tema claro e escuro
+# Tema claro e escuro
 
 A Sprint 4 também ganhou suporte completo a **modo claro e modo escuro**.
 
@@ -87,7 +87,7 @@ O design escuro utiliza uma superfície azul-marinho/cinza profunda, mantendo o 
 
 ---
 
-# 📱 Funcionalidades
+# Funcionalidades
 
 ## Monitoramento
 
@@ -130,7 +130,7 @@ O design escuro utiliza uma superfície azul-marinho/cinza profunda, mantendo o 
 
 ---
 
-# 🏗️ Stack e arquitetura
+# Stack e arquitetura
 
 | Tecnologia | Uso |
 |---|---|
@@ -171,7 +171,7 @@ MotivaSprint2/
 
 ---
 
-# 📦 APK final
+# APK final
 
 O projeto possui um perfil EAS configurado para gerar **APK Android**:
 
@@ -198,11 +198,11 @@ O APK deverá ser hospedado em **EAS Build, GitHub Releases, Google Drive ou ser
 
 ---
 
-# 💼 Plano de negócio
+# Plano de negócio
 
 O plano completo está em:
 
-**[📄 PLANO_NEGOCIO.md](./motiva-safety/docs/PLANO_NEGOCIO.md)**
+**[PLANO_NEGOCIO.md](./motiva-safety/docs/PLANO_NEGOCIO.md)**
 
 O documento contempla:
 
@@ -226,7 +226,7 @@ As estimativas financeiras são tratadas explicitamente como **premissas acadêm
 
 ---
 
-# 🤖 Evolução com visão computacional
+# Evolução com visão computacional
 
 A arquitetura foi preparada para uma evolução futura:
 
@@ -254,7 +254,7 @@ A automação não elimina a validação humana: o aplicativo continua como cama
 
 ---
 
-# 🧪 Testes
+# Testes
 
 ### Sprint 3
 
@@ -293,7 +293,7 @@ Ele possui **18 cenários**, cobrindo:
 
 ---
 
-# 🎬 Pitch final
+# Pitch final
 
 ### Link do vídeo
 
@@ -303,7 +303,7 @@ O vídeo deve ter **até 5 minutos** e ter protagonismo dos integrantes do grupo
 
 Roteiro:
 
-**[🎬 ROTEIRO_VIDEO.md](./motiva-safety/MotivaSprint2/ROTEIRO_VIDEO.md)**
+**[ROTEIRO_VIDEO.md](./motiva-safety/MotivaSprint2/ROTEIRO_VIDEO.md)**
 
 Estrutura:
 
@@ -321,7 +321,7 @@ Estrutura:
 
 ---
 
-# 🏁 Evolução das quatro Sprints
+# Evolução das quatro Sprints
 
 | Sprint | Entrega |
 |---|---|
@@ -344,7 +344,7 @@ Principal feedback recebido:
 
 ---
 
-# ✅ Matriz de aderência à Sprint 4
+# Matriz de aderência à Sprint 4
 
 | Exigência | Estado atual |
 |---|---|
@@ -374,7 +374,7 @@ Principal feedback recebido:
 
 ---
 
-# 🚀 Evoluções futuras
+# Evoluções futuras
 
 Estas funcionalidades ficam como evolução do produto, e não como pendência necessária para a entrega acadêmica atual:
 
@@ -390,7 +390,7 @@ Estas funcionalidades ficam como evolução do produto, e não como pendência n
 
 ---
 
-# 🔐 Decisão tecnológica
+# Decisão tecnológica
 
 A equipe **não migrou para Flutter**.
 
@@ -404,7 +404,7 @@ A Sprint 4 foi utilizada para aprofundar a aderência ao problema da Motiva, mel
 
 ---
 
-# 🛠️ Como executar localmente
+# Como executar localmente
 
 ### Pré-requisitos
 
@@ -441,7 +441,7 @@ eas build --platform android --profile preview
 
 ---
 
-# 👥 Projeto
+# Projeto
 
 **FIAP — Ciência da Computação**  
 **Desafio:** Motiva  
