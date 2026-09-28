@@ -39,6 +39,9 @@ const RODOVIAS_FREQUENTES = [
   "SP-280 Castello Branco",
   "SP-021 Rodoanel Mário Covas",
   "SP-310 Washington Luís",
+  "SP-300 Marechal Rondon",
+  "SP-255",
+  "SP-127",
 ];
 
 const CHIPS_SENTIDO: Chip<SentidoRodovia>[] = [
@@ -49,11 +52,13 @@ const CHIPS_SENTIDO: Chip<SentidoRodovia>[] = [
 const VALOR_INICIAL: DadosFormularioOcorrencia = {
   titulo: "",
   descricao: "",
-  tipo: "pavimento",
+  tipo: "vegetacao_alta",
   rodovia: "",
   km: "",
   sentido: "capital",
   referencia: "",
+  alturaAtualCm: "",
+  limiteCm: "100",
   risco: "medio",
   responsavel: "",
 };
@@ -79,6 +84,10 @@ function validar(dados: DadosFormularioOcorrencia): Erros {
   if (dados.referencia.trim() === "") {
     erros.referencia = "Informe uma referência do ponto exato.";
   }
+  const altura = Number(dados.alturaAtualCm.replace(",", "."));
+  const limite = Number(dados.limiteCm.replace(",", "."));
+  if (!Number.isFinite(altura) || altura <= 0) erros.alturaAtualCm = "Informe a altura medida em centímetros.";
+  if (!Number.isFinite(limite) || limite <= 0) erros.limiteCm = "Informe o limite operacional em centímetros.";
   if (dados.responsavel.trim() === "") {
     erros.responsavel = "Informe quem está registrando.";
   }
@@ -116,6 +125,8 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
       km: String(original.km).replace(".", ","),
       sentido: original.sentido,
       referencia: original.referencia,
+      alturaAtualCm: String(original.alturaAtualCm),
+      limiteCm: String(original.limiteCm),
       risco: original.risco,
       responsavel: original.responsavel,
       fotoUri: original.fotoUri,
@@ -142,6 +153,8 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
       interpretarKm(dados.km) !== original.km ||
       dados.sentido !== original.sentido ||
       dados.referencia !== original.referencia ||
+      dados.alturaAtualCm !== String(original.alturaAtualCm) ||
+      dados.limiteCm !== String(original.limiteCm) ||
       dados.risco !== original.risco ||
       dados.responsavel !== original.responsavel ||
       dados.fotoUri !== original.fotoUri
@@ -467,6 +480,33 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
             }
           />
 
+          <View style={styles.linhaMedidas}>
+            <View style={styles.medida}>
+              <Input
+                label="Altura da vegetação"
+                obrigatorio
+                placeholder="Ex: 150"
+                keyboardType="decimal-pad"
+                value={dados.alturaAtualCm}
+                onChangeText={(texto) => alterar("alturaAtualCm", texto)}
+                erro={erros.alturaAtualCm}
+                acessorio={<AppText variant="caption" color={palette.textMuted}>cm</AppText>}
+              />
+            </View>
+            <View style={styles.medida}>
+              <Input
+                label="Limite do trecho"
+                obrigatorio
+                placeholder="Ex: 100"
+                keyboardType="decimal-pad"
+                value={dados.limiteCm}
+                onChangeText={(texto) => alterar("limiteCm", texto)}
+                erro={erros.limiteCm}
+                acessorio={<AppText variant="caption" color={palette.textMuted}>cm</AppText>}
+              />
+            </View>
+          </View>
+
           <Input
             label="Responsável pelo registro"
             obrigatorio
@@ -552,6 +592,13 @@ const styles = StyleSheet.create({
   },
   secao: {
     gap: spacing.sm,
+  },
+  linhaMedidas: {
+    flexDirection: "row",
+    gap: spacing.md,
+  },
+  medida: {
+    flex: 1,
   },
   botaoGps: {
     width: 50,
