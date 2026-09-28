@@ -1,369 +1,419 @@
-# 🌱 Motiva Safety — Sprint 4 / Entrega Final
+# 🌱 Motiva Safety — Entrega Final
 
-> **Aplicação mobile para monitoramento e gestão de vegetação nas rodovias.**
+> **Aplicativo mobile para monitoramento e gestão de vegetação na faixa de domínio de rodovias.**
 
-A Sprint 4 reposiciona o produto para o problema central do desafio: **monitorar vegetação na faixa de domínio**, registrando evidência, GPS, altura, limite operacional, prioridade e histórico de intervenções.
+O **Motiva Safety** transforma o monitoramento de vegetação em um fluxo operacional rastreável:
 
-**Fluxo:** identificar → fotografar → localizar → medir → priorizar → intervir → comprovar → consultar histórico.
+**identificar → fotografar → localizar → medir → priorizar → intervir → comprovar → consultar histórico**
 
-Aplicativo mobile desenvolvido para apoiar equipes da Motiva no **registro, acompanhamento e tratamento de ocorrências de segurança em rodovias**.
-
-A aplicação foi construída em **React Native com Expo**, mantendo os fluxos definidos nas Sprints anteriores e utilizando dados mockados/persistência local enquanto a integração com backend não está disponível.
-
-> **Status da Sprint:** aplicação funcional para demonstração, com os principais fluxos implementados e testados manualmente.  
-> **Tecnologia:** React Native + Expo + TypeScript  
-> **Versão:** Sprint 4 / Entrega final
+A Sprint 4 corrigiu o principal ponto de atenção da Sprint 3: o produto deixou de ser um gerenciador genérico de ocorrências de segurança e passou a ter **vegetação como núcleo do domínio**.
 
 ---
 
-## 1. Visão geral
+## 🎯 Problema
 
-O Motiva Safety permite que uma equipe de campo registre um trecho com vegetação, fotografe, capture GPS, informe a altura medida e o limite operacional e acompanhe a intervenção até a resolução.
+O crescimento irregular da vegetação pode afetar a visibilidade de sinalização, ocupar áreas laterais, dificultar a inspeção de dispositivos de drenagem e aumentar a necessidade de intervenções de conservação.
 
-O fluxo principal é:
+O Motiva Safety foi projetado para responder:
 
-**Registrar ocorrência → consultar lista → abrir detalhe → tramitar status → acompanhar histórico**
-
-
-### 🌱 Especialização em vegetação
-
-Na Sprint 3, o aplicativo funcionava como um gerenciador genérico de ocorrências de segurança. O principal feedback da avaliação foi trazer o desafio da Motiva para o centro do produto.
-
-Na versão final:
-
-- **14/14 ocorrências mockadas são de vegetação**;
-- a ocorrência possui **altura atual** e **limite operacional**;
-- o detalhe mostra se o trecho está acima ou dentro do limite;
-- existem categorias para vegetação alta, vegetação encobrindo sinalização, vegetação invadindo acostamento e vegetação sobre drenagem;
-- o histórico registra intervenções como **roçada, poda e inspeção**;
-- ocorrências resolvidas demonstram **altura antes × altura depois** da intervenção.
-
-O produto passa a responder não apenas "qual é a ocorrência?", mas **"quanto a vegetação está acima do padrão, onde está, qual a prioridade e o que foi feito?"**.
-
-A aplicação também foi preparada para demonstrar situações alternativas, como:
-
-- lista vazia;
-- busca sem resultados;
-- falha de carregamento;
-- falha ao salvar;
-- ocorrência sem foto;
-- ocorrência sem coordenadas;
-- permissões de câmera/localização;
-- validação de formulário.
+> **Onde a vegetação está fora do padrão, qual é a prioridade, qual equipe precisa atuar e o que aconteceu depois da intervenção?**
 
 ---
 
-## 2. Tecnologias utilizadas
+## 💡 Solução
 
-| Tecnologia | Utilização |
+A equipe de campo consegue registrar:
+
+- evidência fotográfica;
+- rodovia, km e sentido;
+- localização por GPS;
+- altura atual da vegetação;
+- limite operacional do trecho;
+- referência do ponto;
+- prioridade;
+- responsável pelo registro.
+
+O supervisor consegue:
+
+- consultar os trechos;
+- buscar e filtrar;
+- identificar ocorrências acima do limite;
+- detalhar cada trecho;
+- acompanhar a tramitação;
+- visualizar histórico;
+- registrar a resolução;
+- consultar intervenções anteriores.
+
+---
+
+# 🌿 O foco em vegetação
+
+A base de demonstração possui **14/14 ocorrências exclusivamente de vegetação**.
+
+Os cenários incluem:
+
+| Cenário | Exemplo |
 |---|---|
-| React Native | Desenvolvimento do aplicativo mobile |
-| Expo SDK 57 | Execução e gerenciamento do projeto |
-| TypeScript | Tipagem e organização do código |
-| React Navigation | Navegação entre as telas |
-| AsyncStorage | Persistência local dos dados |
-| Expo Image Picker | Seleção/captura de fotos |
-| Expo Location | Captura de localização por GPS |
-| Expo Haptics | Feedback tátil |
-| Expo Vector Icons | Ícones da interface |
-| Inter | Tipografia da aplicação |
+| Acima do limite | 172 cm medidos × 150 cm de limite |
+| Encobrindo sinalização | Vegetação reduzindo a visibilidade de uma placa |
+| Invadindo acostamento | Vegetação ocupando área lateral |
+| Sobre drenagem | Vegetação dificultando inspeção e escoamento |
+| Dentro do padrão | Trecho monitorado sem necessidade de intervenção |
+| Roçada concluída | Altura antes × altura depois |
+| Poda concluída | Histórico da intervenção |
+| Inspeção | Registro de conformidade |
+
+O detalhe de uma ocorrência resolvida consegue demonstrar, por exemplo:
+
+**118 cm → roçada → 62 cm**
+
+Assim, o produto não registra apenas "um problema": ele registra **medição, limite, localização, prioridade, intervenção e resultado**.
 
 ---
 
-## 3. Estrutura do projeto
+# 🌙 Tema claro e escuro
 
-O código principal está em:
+A Sprint 4 também ganhou suporte completo a **modo claro e modo escuro**.
 
-\`motiva-safety/MotivaSprint2\`
+### Comportamento
 
-Principais diretórios:
+- tema inicial acompanha a configuração do dispositivo;
+- usuário pode alternar manualmente pelo ícone no cabeçalho;
+- preferência fica salva no aparelho;
+- tema é aplicado a telas, cartões, formulários, filtros, modais, estados de erro e carregamento;
+- barra de status acompanha o tema.
+
+O design escuro utiliza uma superfície azul-marinho/cinza profunda, mantendo o azul institucional da Motiva como cor de ação e preservando as cores semânticas de prioridade.
+
+---
+
+# 📱 Funcionalidades
+
+## Monitoramento
+
+- ✅ Cadastro de ocorrência de vegetação
+- ✅ Foto por câmera
+- ✅ Foto pela galeria
+- ✅ GPS
+- ✅ Rodovia, km e sentido
+- ✅ Altura medida
+- ✅ Limite operacional
+- ✅ Comparação acima/abaixo do limite
+- ✅ Categorias de vegetação
+- ✅ Classificação de prioridade
+
+## Gestão
+
+- ✅ Lista de trechos monitorados
+- ✅ Busca
+- ✅ Filtros por prioridade
+- ✅ Filtros por status
+- ✅ Ordenação
+- ✅ Detalhamento
+- ✅ Edição
+- ✅ Tramitação
+- ✅ Linha do tempo
+- ✅ Histórico de intervenções
+- ✅ Abertura da localização em aplicativo de mapas
+- ✅ Persistência local com AsyncStorage
+
+## Estados
+
+- ✅ Carregamento
+- ✅ Erro
+- ✅ Lista vazia
+- ✅ Busca sem resultado
+- ✅ Falha de gravação
+- ✅ Permissão de câmera
+- ✅ Permissão de localização
+- ✅ Modo demonstração para validação dos cenários
+
+---
+
+# 🏗️ Stack e arquitetura
+
+| Tecnologia | Uso |
+|---|---|
+| React Native | Aplicativo mobile |
+| Expo SDK 57 | Framework |
+| TypeScript | Tipagem |
+| React Navigation | Navegação |
+| AsyncStorage | Persistência local |
+| Expo Image Picker | Câmera/galeria |
+| Expo Location | GPS |
+| Expo Image | Evidências |
+| Expo Vector Icons | Ícones |
+| EAS Build | Build Android |
+
+Estrutura principal:
 
 ```text
 MotivaSprint2/
 ├── App.tsx
-├── package.json
+├── app.json
+├── eas.json
 ├── src/
-│   ├── components/       # Componentes reutilizáveis
-│   ├── context/          # Estado global das ocorrências
-│   ├── data/             # Dados mockados
-│   ├── navigation/       # Navegação entre telas
-│   ├── screens/          # Telas principais
-│   ├── services/         # Camada de acesso aos dados
-│   ├── theme/            # Cores, tipografia e regras de domínio
-│   ├── types/            # Tipos TypeScript
-│   └── utils/            # Funções auxiliares
-├── assets/               # Ícones e imagens utilizadas no app
-├── TESTES_SPRINT3.md     # Documento de testes manuais
-└── ROTEIRO_VIDEO.md      # Roteiro do vídeo de demonstração
+│   ├── components/
+│   ├── context/
+│   ├── data/
+│   ├── navigation/
+│   ├── screens/
+│   ├── services/
+│   ├── theme/
+│   ├── types/
+│   └── utils/
+├── assets/
+│   └── ocorrencias/
+└── docs/
+    ├── PLANO_NEGOCIO.md
+    └── TESTES_SPRINT4_FINAL.md
 ```
 
-### Telas principais
-
-| Tela | Arquivo | Função |
-|---|---|---|
-| Lista de ocorrências | \`src/screens/ListaOcorrencias.tsx\` | Dashboard, busca, filtros, ordenação e acesso aos registros |
-| Detalhe da ocorrência | \`src/screens/DetalheOcorrencia.tsx\` | Informações completas, histórico e alteração de status |
-| Nova/Editar ocorrência | \`src/screens/FormularioOcorrencia.tsx\` | Cadastro e edição de ocorrências |
-
 ---
 
-# 4. Status das funcionalidades
+# 📦 APK final
 
-## Fluxos principais
-
-| Funcionalidade | Status | Observação |
-|---|---|---|
-| Navegação entre Lista, Detalhe e Formulário | ✅ Implementado | Navegação com React Navigation |
-| Lista de ocorrências | ✅ Implementado | Dados mockados + persistência local |
-| Indicadores de risco/status | ✅ Implementado | Cards funcionam como atalhos de filtro |
-| Busca de ocorrências | ✅ Implementado | Busca em diversos campos e ignora acentos |
-| Filtros por risco | ✅ Implementado | Todos, Alto, Médio e Baixo |
-| Filtros por status | ✅ Implementado | Aberta, Em análise e Resolvida |
-| Ordenação | ✅ Implementado | Recentes, antigas, risco e quilômetro |
-| Detalhamento da ocorrência | ✅ Implementado | Informações, foto, localização e histórico |
-| Cadastro de ocorrência | ✅ Implementado | Formulário completo com validação |
-| Edição de ocorrência | ✅ Implementado | Mantém protocolo e histórico |
-| Alteração de status | ✅ Implementado | Fluxo Aberta → Em análise → Resolvida e reabertura |
-| Linha do tempo | ✅ Implementado | Histórico de alterações com data, hora e responsável |
-| Upload/seleção de foto | ✅ Implementado | Galeria e câmera |
-| Captura de localização | ✅ Implementado | Testado em dispositivo físico |
-| Persistência após fechar o app | ✅ Implementado | AsyncStorage |
-| Estados de carregamento | ✅ Implementado | Skeleton da lista |
-| Estado de erro | ✅ Implementado | Falha de carregamento com tentativa novamente |
-| Estado vazio | ✅ Implementado | Sem ocorrências |
-| Busca sem resultado | ✅ Implementado | Mensagem específica + limpar filtros |
-| Modo de demonstração | ✅ Implementado | Permite simular falhas e esvaziar/restaurar a base |
-
-## Funcionalidades ainda pendentes
-
-| Funcionalidade | Status | Planejamento |
-|---|---|---|
-| Backend/API real | ⏳ Pendente | Sprint 4 |
-| Sincronização entre dispositivos | ⏳ Pendente | Sprint 4 |
-| Autenticação/login | ⏳ Pendente | Sprint 4 |
-| Usuários e permissões por perfil | ⏳ Pendente | Sprint 4 |
-| Mapa integrado dentro do aplicativo | ⏳ Pendente | Sprint 4 |
-| Testes automatizados | ⏳ Pendente | Sprint 4 |
-| Compressão/redimensionamento das fotos | ⏳ Pendente | Sprint 4 |
-| Remoção do Modo demonstração para versão final | ⏳ Pendente | Finalização |
-
-### Observação sobre exclusão de ocorrências
-
-A exclusão de registros não foi implementada porque não faz parte do escopo definido para o MVP atual. Caso a funcionalidade seja incorporada ao produto final, deverá ser tratada com confirmação e controle de permissão.
-
----
-
-# 5. Mock de dados
-
-A aplicação possui uma base de dados mockada para permitir a demonstração dos diferentes cenários da solução.
-
-Arquivo principal:
-
-\`src/data/mockData.ts\`
-
-A base contempla 14 ocorrências exclusivamente de vegetação, distribuídas entre:
-
-- vegetação acima do limite;
-- vegetação encobrindo sinalização;
-- vegetação invadindo acostamento;
-- vegetação sobre drenagem;
-- trechos dentro do padrão;
-- roçada concluída;
-- poda concluída;
-- inspeção sem necessidade de intervenção.
-
-Além da base inicial, o aplicativo permite:
-
-**Modo demonstração → Restaurar ocorrências de exemplo**
-
-ou
-
-**Modo demonstração → Esvaziar a lista**
-
-Isso permite testar rapidamente os estados de sucesso, erro e lista vazia exigidos na Sprint.
-
----
-
-# 6. Testes manuais
-
-O projeto possui um documento específico com os testes realizados:
-
-**[TESTES_SPRINT3.md](./motiva-safety/MotivaSprint2/TESTES_SPRINT3.md)**
-
-**[TESTES_SPRINT4_FINAL.md](./motiva-safety/docs/TESTES_SPRINT4_FINAL.md)** — checklist de regressão para o APK final.
-
-Foram documentados **20 casos de teste manuais**, divididos em:
-
-| Grupo | Casos | Resultado |
-|---|---:|---:|
-| Fluxos principais | 5 | ✅ 5 passaram |
-| Fluxos secundários | 5 | ✅ 5 passaram |
-| Estados de erro e vazios | 10 | ✅ 10 passaram |
-| **Total** | **20** | **✅ 20 passaram** |
-
-## 5 fluxos principais testados
-
-| ID | Fluxo | Status |
-|---|---|---|
-| FP-01 | Carregar e consultar a lista de ocorrências | ✅ Passou |
-| FP-02 | Buscar, filtrar e ordenar ocorrências | ✅ Passou |
-| FP-03 | Consultar o detalhe de uma ocorrência | ✅ Passou |
-| FP-04 | Cadastrar uma nova ocorrência | ✅ Passou |
-| FP-05 | Alterar o status de uma ocorrência | ✅ Passou |
-
-Os testes também cobrem edição, GPS, persistência local, atualização por gesto, validações, falhas de conexão, lista vazia, ausência de foto/coordenadas e permissões de câmera.
-
-> **Observação:** os cenários que dependem diretamente de recursos físicos, como GPS e atualização por gesto, foram validados em dispositivo físico.
-
----
-
-# 7. Principais problemas identificados e corrigidos
-
-Durante a evolução da Sprint 3, alguns problemas das versões anteriores foram tratados:
-
-1. **Inicialização do projeto:** foram corrigidas referências de assets que impediam o aplicativo de iniciar.
-2. **Compatibilidade com Expo Go:** o projeto foi atualizado para a **SDK 57**.
-3. **Dados mockados:** os exemplos foram adequados ao contexto de segurança rodoviária.
-4. **Fotos nas ocorrências:** a base passou a contemplar ocorrências com e sem evidência fotográfica.
-5. **Fluxo de status:** as transições entre status foram estruturadas e passaram a ser navegáveis.
-6. **Persistência:** os dados deixaram de existir somente em memória e passaram a ser armazenados localmente.
-7. **Consistência visual:** regras de cores, status e risco foram centralizadas no tema da aplicação.
-
----
-
-# 8. Estado da entrega final
-
-A aplicação está funcional no ambiente de desenvolvimento e preparada para a geração do APK. As pendências desta etapa são exclusivamente de **distribuição e validação final da entrega**:
-
-- geração do APK pelo EAS;
-- instalação e regressão em Android físico;
-- publicação externa do APK;
-- gravação do pitch final;
-- inclusão dos links do APK e do vídeo neste README.
-
-A integração com backend remoto, autenticação e sincronização entre dispositivos permanece como evolução de produto e não é necessária para o protótipo acadêmico offline-first desta entrega.
-
-# 9. Plano de ajustes para a Sprint 4
-
-A Sprint 4 será dedicada principalmente à preparação para uma versão mais próxima do produto final.
-
-## Prioridade 1 — Backend e sincronização
-
-- Definir API e banco de dados remoto.
-- Criar endpoints para listar, cadastrar, editar e atualizar ocorrências.
-- Substituir gradualmente o mock pela integração real.
-- Manter uma estratégia de fallback para demonstração offline.
-- Garantir que diferentes dispositivos possam consultar os mesmos registros.
-
-## Prioridade 2 — Autenticação e usuários
-
-- Implementar login.
-- Definir perfis de acesso.
-- Relacionar a ocorrência ao usuário autenticado.
-- Substituir o preenchimento manual do responsável.
-
-## Prioridade 3 — Localização e mapa
-
-- Integrar mapa dentro da aplicação.
-- Exibir a ocorrência diretamente no ponto geográfico.
-- Permitir visualização da localização a partir da tela de detalhe.
-
-## Prioridade 4 — Imagens e desempenho
-
-- Redimensionar e comprimir fotos antes do armazenamento/upload.
-- Avaliar limite de tamanho por imagem.
-- Melhorar carregamento de listas maiores.
-- Validar comportamento em aparelhos de menor desempenho.
-
-## Prioridade 5 — Qualidade
-
-- Criar testes automatizados para regras críticas.
-- Reexecutar os 20 testes manuais após as mudanças.
-- Fazer regressão completa de navegação.
-- Corrigir qualquer crash ou fluxo quebrado encontrado durante a demonstração.
-
-## Prioridade 6 — Preparação da entrega final
-
-- Remover ou desabilitar o Modo demonstração na versão final.
-- Revisar identidade visual.
-- Validar o aplicativo em dispositivo físico.
-- Gravar o vídeo final com até 3 minutos.
-- Atualizar este README com o estado final da Sprint 4.
-
----
-
-# 10. Vídeo de demonstração
-
-O roteiro do vídeo está disponível em:
-
-**[ROTEIRO_VIDEO.md](./motiva-safety/MotivaSprint2/ROTEIRO_VIDEO.md)**
-
-O roteiro foi estruturado para uma demonstração de aproximadamente **2 minutos e 50 segundos**, cobrindo:
-
-1. abertura e dashboard;
-2. busca, filtros e ordenação;
-3. estado sem resultados;
-4. detalhe da ocorrência;
-5. alteração de status;
-6. cadastro e validação;
-7. falha de conexão;
-8. lista vazia.
-
-**Link do vídeo:** _https://youtube.com/shorts/ONDTA85zl04?is=oredA9yclh9nRfmM_
-
----
-
-# 💼 Plano de negócio
-
-O plano completo está em **[motiva-safety/docs/PLANO_NEGOCIO.md](./motiva-safety/docs/PLANO_NEGOCIO.md)**.
-
-Ele reúne:
-- proposta de valor;
-- público-alvo e personas;
-- modelo B2B SaaS + implantação + serviço gerenciado;
-- premissas de custos;
-- diferenciais;
-- riscos;
-- impacto esperado;
-- indicadores;
-- roadmap para visão computacional.
-
-Os valores financeiros são **premissas acadêmicas para um piloto**, não uma cotação comercial da Motiva.
-
-
-# 📦 APK FINAL
-
-O projeto possui um `eas.json` com perfil `preview` configurado para gerar APK Android.
+O projeto possui um perfil EAS configurado para gerar **APK Android**:
 
 ```bash
 eas build --platform android --profile preview
 ```
 
-O APK final deve ser hospedado fora do repositório (EAS Build, GitHub Releases ou Google Drive), conforme a regra da Sprint. **Link do APK: adicionar após o build final.**
+### Link do APK
 
-Para instalar: baixe o APK no Android, autorize a instalação quando solicitado e abra o Motiva Safety.
+> ⏳ **Pendente:** gerar o build final e publicar o APK fora do repositório.
 
-# 🎬 Vídeo final
+O APK deverá ser hospedado em **EAS Build, GitHub Releases, Google Drive ou serviço equivalente**.
 
-**Link do vídeo final: adicionar após a gravação.**
-
-O vídeo deve ter até 5 minutos, com protagonismo dos integrantes, apresentando problema, solução, APK instalado, demonstração, plano de negócio e impacto.
-
-
-
-# 11. Como executar o projeto
-
-### Pré-requisitos
-
-- Node.js 20 ou superior
-- npm
-- Expo Go atualizado para execução em dispositivo
-- Android Studio, caso seja utilizado emulador Android
-- macOS + Xcode para execução nativa em iOS
+> **O arquivo binário não deve ser commitado neste repositório.**
 
 ### Instalação
 
-No terminal:
+1. Abrir o link do APK no Android.
+2. Autorizar a instalação quando solicitado.
+3. Instalar o Motiva Safety.
+4. Abrir o aplicativo.
+5. Permitir câmera e localização.
+6. Executar os testes finais.
+
+---
+
+# 💼 Plano de negócio
+
+O plano completo está em:
+
+**[📄 PLANO_NEGOCIO.md](./motiva-safety/docs/PLANO_NEGOCIO.md)**
+
+O documento contempla:
+
+- proposta de valor;
+- problema;
+- público-alvo;
+- personas;
+- modelo de receita;
+- custos operacionais estimados;
+- diferenciais;
+- riscos;
+- impacto esperado;
+- indicadores;
+- roadmap.
+
+### Modelo comercial
+
+**B2B SaaS + implantação + serviço gerenciado opcional.**
+
+As estimativas financeiras são tratadas explicitamente como **premissas acadêmicas para um piloto**, e não como cotação comercial da Motiva.
+
+---
+
+# 🤖 Evolução com visão computacional
+
+A arquitetura foi preparada para uma evolução futura:
+
+```text
+Câmera embarcada
+       ↓
+Captura da imagem
+       ↓
+Visão computacional
+       ↓
+Estimativa da altura
+       ↓
+Comparação com limite
+       ↓
+Classificação de prioridade
+       ↓
+GPS
+       ↓
+Ocorrência automática
+       ↓
+Motiva Safety
+```
+
+A automação não elimina a validação humana: o aplicativo continua como camada operacional de revisão, priorização e acompanhamento.
+
+---
+
+# 🧪 Testes
+
+### Sprint 3
+
+A Sprint 3 teve **20 testes manuais documentados**, incluindo fluxos principais, secundários, erros, estados vazios, foto, GPS, persistência e permissões.
+
+**[TESTES_SPRINT3.md](./motiva-safety/MotivaSprint2/TESTES_SPRINT3.md)**
+
+### Sprint 4 — regressão final
+
+Foi criado um novo checklist específico para o APK:
+
+**[TESTES_SPRINT4_FINAL.md](./motiva-safety/docs/TESTES_SPRINT4_FINAL.md)**
+
+Ele possui **18 cenários**, cobrindo:
+
+- abertura do APK;
+- base de vegetação;
+- dashboard;
+- busca;
+- filtros;
+- detalhe;
+- altura × limite;
+- GPS;
+- tramitação;
+- novo registro;
+- edição;
+- persistência;
+- lista vazia;
+- busca sem resultado;
+- falha simulada;
+- câmera;
+- GPS negado;
+- migração da base antiga.
+
+> Os 18 testes precisam ser executados novamente no **APK final instalado em dispositivo Android** antes da submissão.
+
+---
+
+# 🎬 Pitch final
+
+### Link do vídeo
+
+> ⏳ **Pendente:** gravar e publicar o vídeo final.
+
+O vídeo deve ter **até 5 minutos** e ter protagonismo dos integrantes do grupo.
+
+Roteiro:
+
+**[🎬 ROTEIRO_VIDEO.md](./motiva-safety/MotivaSprint2/ROTEIRO_VIDEO.md)**
+
+Estrutura:
+
+| Tempo | Conteúdo |
+|---|---|
+| 0:00–0:30 | Grupo + problema |
+| 0:30–1:00 | Solução |
+| 1:00–2:00 | Dashboard |
+| 2:00–3:15 | Detalhe + histórico |
+| 3:15–4:00 | Novo registro |
+| 4:00–4:35 | Plano de negócio |
+| 4:35–5:00 | Impacto + encerramento |
+
+**Importante:** a apresentação deve ser narrada pelos integrantes. Não utilizar narração automatizada por IA.
+
+---
+
+# 🏁 Evolução das quatro Sprints
+
+| Sprint | Entrega |
+|---|---|
+| **Sprint 1** | Problema, proposta e prototipação inicial |
+| **Sprint 2** | Estrutura mobile, navegação, componentes e identidade visual |
+| **Sprint 3** | Protótipo funcional completo, GPS, foto, persistência, tramitação, histórico e 20 testes |
+| **Sprint 4** | Especialização em vegetação, altura/limite, histórico de intervenções, plano de negócio, tema escuro e preparação do APK final |
+
+### Resultado da Sprint 3
+
+**9/10**
+
+Principal feedback recebido:
+
+> O aplicativo estava funcional e bem documentado, mas havia perdido aderência ao desafio porque se comportava como um gerenciador genérico de ocorrências.
+
+### Resposta na Sprint 4
+
+**14/14 mocks agora são de vegetação**, com dados de altura, limite, prioridade e histórico de intervenção.
+
+---
+
+# ✅ Matriz de aderência à Sprint 4
+
+| Exigência | Estado atual |
+|---|---|
+| Aplicação final em Android | 🟡 Código preparado; falta gerar/validar APK |
+| APK hospedado fora do Git | ⏳ Falta publicar o build |
+| Link do APK no README | ⏳ Falta adicionar após publicação |
+| Plano de negócio | ✅ Concluído |
+| Proposta de valor | ✅ |
+| Público-alvo/personas | ✅ |
+| Modelo de receita | ✅ |
+| Custos operacionais | ✅ |
+| Riscos | ✅ |
+| Diferenciais | ✅ |
+| README como documento-âncora | ✅ |
+| Pitch de até 5 minutos | ✅ Roteiro pronto |
+| Protagonismo dos integrantes | ⏳ Depende da gravação |
+| Link do vídeo | ⏳ Falta adicionar |
+| Demonstração em dispositivo | ⏳ Depende do APK |
+| Problema da Motiva no centro do produto | ✅ |
+| Vegetação como domínio principal | ✅ |
+| Altura + limite | ✅ |
+| Histórico de intervenções | ✅ |
+| Tema claro/escuro | ✅ |
+| Migração para Flutter | N/A — React Native foi mantido |
+
+> **Conclusão:** o código e a documentação estão alinhados ao escopo da Sprint 4. A submissão só fica integralmente fechada após **gerar o APK, instalar e testar em Android, publicar o APK, gravar o pitch e adicionar os dois links ao README**.
+
+---
+
+# 🚀 Evoluções futuras
+
+Estas funcionalidades ficam como evolução do produto, e não como pendência necessária para a entrega acadêmica atual:
+
+- backend remoto;
+- autenticação;
+- sincronização entre dispositivos;
+- mapa integrado;
+- compressão de imagens;
+- testes automatizados;
+- visão computacional;
+- criação automática de ocorrências;
+- análise de reincidência por trecho.
+
+---
+
+# 🔐 Decisão tecnológica
+
+A equipe **não migrou para Flutter**.
+
+O projeto permanece em:
+
+**React Native + Expo + TypeScript**
+
+A decisão foi manter a stack utilizada nas Sprints anteriores porque ela já possuía navegação, componentes reutilizáveis, camada de serviço, persistência e fluxos funcionais.
+
+A Sprint 4 foi utilizada para aprofundar a aderência ao problema da Motiva, melhorar a experiência visual, adicionar o tema escuro, consolidar o plano de negócio e preparar a distribuição em APK.
+
+---
+
+# 🛠️ Como executar localmente
+
+### Pré-requisitos
+
+- Node.js
+- npm
+- Android Studio ou dispositivo Android
+- Expo/EAS CLI
+
+### Instalação
 
 ```bash
 git clone https://github.com/Joao-Vitor06/Sprint_CrossPlataform.git
@@ -371,119 +421,30 @@ cd Sprint_CrossPlataform/motiva-safety/MotivaSprint2
 npm install
 ```
 
-### Executar com Expo
+### Desenvolvimento
 
 ```bash
 npx expo start
 ```
 
-Depois, escaneie o QR Code com o Expo Go ou abra o projeto em um emulador.
+### Android
 
-### Comandos disponíveis
+```bash
+npm run android
+```
 
-| Comando | Função |
-|---|---|
-| \`npm start\` | Inicia o Expo |
-| \`npm run android\` | Executa a versão Android nativa |
-| \`npm run ios\` | Executa a versão iOS nativa |
-| \`npm run web\` | Executa a versão web |
-| \`npm run typecheck\` | Verifica os tipos TypeScript |
+### APK
 
----
-
-# 12. Onde alterar cada parte
-
-| Necessidade | Arquivo |
-|---|---|
-| Cores, fontes e espaçamentos | \`src/theme/colors.ts\` e \`src/theme/tokens.ts\` |
-| Regras de risco e status | \`src/theme/domain.ts\` |
-| Dados mockados | \`src/data/mockData.ts\` |
-| Estado global das ocorrências | \`src/context/OcorrenciasContext.tsx\` |
-| Lista, filtros e busca | \`src/screens/ListaOcorrencias.tsx\` |
-| Detalhe e status | \`src/screens/DetalheOcorrencia.tsx\` |
-| Cadastro/edição | \`src/screens/FormularioOcorrencia.tsx\` |
-| Camada de dados/API | \`src/services/ocorrenciasService.ts\` |
-| Navegação | \`src/navigation/RootNavigator.tsx\` |
+```bash
+eas build --platform android --profile preview
+```
 
 ---
 
-# 13. Decisão tecnológica
+# 👥 Projeto
 
-A equipe **não migrou para Flutter** nesta etapa.
-
-A implementação continua em **React Native + Expo + TypeScript**, mantendo a base desenvolvida nas Sprints anteriores. A decisão evita reescrita desnecessária dos fluxos já implementados e permite concentrar a Sprint 4 em backend, autenticação, mapa, testes e refinamentos de produto.
-
----
-
-# 14. Resumo da entrega
-
-A versão atual do Motiva Safety possui:
-
-- ✅ navegação funcional entre os principais fluxos;
-- ✅ lista de ocorrências;
-- ✅ busca, filtros e ordenação;
-- ✅ cadastro e edição;
-- ✅ validação de formulário;
-- ✅ fotos;
-- ✅ GPS;
-- ✅ histórico e alteração de status;
-- ✅ persistência local;
-- ✅ estados de carregamento, erro e vazio;
-- ✅ dados mockados para demonstração;
-- ✅ 20 testes manuais documentados e aprovados;
-- ✅ plano de evolução para a Sprint 4.
-
-### Próximo marco
-
-**Sprint 4 → integração e preparação para a versão final do Motiva Safety.**
-
-# ✅ Matriz de aderência à Sprint 4
-
-Abaixo está a conferência da entrega contra o enunciado da Sprint 4.
-
-| Exigência | Estado | Evidência |
-|---|---|---|
-| Versão final em APK Android | 🟡 Preparado | `eas.json` com perfil `preview`; falta gerar e validar o APK no dispositivo |
-| Plano de negócio | ✅ Concluído | [PLANO_NEGOCIO.md](./motiva-safety/docs/PLANO_NEGOCIO.md) |
-| Proposta de valor | ✅ Concluído | Plano de negócio |
-| Público-alvo e personas | ✅ Concluído | Plano de negócio |
-| Modelo de receita | ✅ Concluído | B2B SaaS + implantação + serviço gerenciado |
-| Custos operacionais estimados | ✅ Concluído | Plano de negócio |
-| Riscos e diferenciais | ✅ Concluído | Plano de negócio |
-| README como documento-âncora | ✅ Concluído | Este README |
-| Link do APK | ⏳ Pendente | Inserir após o build EAS |
-| Link do vídeo final | ⏳ Pendente | Inserir após a gravação |
-| Pitch de até 5 minutos | 🟡 Roteirizado | [ROTEIRO_VIDEO.md](./motiva-safety/MotivaSprint2/ROTEIRO_VIDEO.md) |
-| Demonstração no dispositivo | 🟡 Preparada | Depende da instalação do APK |
-| Problema da Motiva no centro do produto | ✅ Concluído | 14/14 mocks são de vegetação, com altura, limite e intervenções |
-| Correções de qualidade da Sprint 3 | ✅ Concluído no código | Rótulos, rodovias, histórico, dados mockados e documentação revisados |
-| Migração para Flutter | N/A | Projeto permanece em React Native + Expo |
-
-> **Importante:** tecnicamente o repositório já está preparado para a entrega final, mas a entrega da Sprint 4 só fica 100% fechada depois de **gerar o APK, instalar/testar no Android, gravar o vídeo e adicionar os dois links acima**.
-
-# 🏁 Consolidação das quatro Sprints
-
-| Sprint | Evolução |
-|---|---|
-| **Sprint 1** | Problema, proposta e prototipação inicial |
-| **Sprint 2** | Estrutura mobile, navegação, componentes e identidade visual |
-| **Sprint 3** | Protótipo funcional completo, persistência, GPS, foto, tramitação, histórico e 20 testes manuais |
-| **Sprint 4** | Especialização em vegetação, métricas de altura/limite, histórico de intervenções, plano de negócio e preparação do APK final |
-
-**Resultado da Sprint 3:** 9/10.  
-**Principal correção para a Sprint 4:** retirar o caráter genérico de "ocorrências de segurança" e colocar **vegetação** como núcleo do produto.
-
-### Checklist da entrega final
-
-- [ ] Gerar APK via EAS.
-- [ ] Instalar e validar o APK em Android físico.
-- [ ] Executar os fluxos principais no APK.
-- [ ] Validar câmera e GPS.
-- [ ] Validar persistência.
-- [ ] Validar erro, vazio e busca sem resultado.
-- [ ] Publicar o APK fora do repositório.
-- [ ] Adicionar link do APK neste README.
-- [ ] Gravar vídeo final de até 5 minutos.
-- [ ] Adicionar link do vídeo.
-- [ ] Revisar participação do grupo no histórico de commits.
-
+**FIAP — Ciência da Computação**  
+**Desafio:** Motiva  
+**Aplicação:** Motiva Safety  
+**Stack:** React Native + Expo + TypeScript  
+**Versão:** 4.0.0
