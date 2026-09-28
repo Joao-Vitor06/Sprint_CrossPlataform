@@ -71,8 +71,8 @@ export function PainelDemonstracao({
           <Switch
             value={simulandoFalha}
             onValueChange={onAlternarFalha}
-            trackColor={{ false: colors.slate300, true: colors.blue500 }}
-            thumbColor={colors.white}
+            trackColor={{ false: palette.borderStrong, true: palette.action }}
+            thumbColor={palette.textInverse}
             accessibilityLabel="Simular falha de conexão"
           />
         </View>
