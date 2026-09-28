@@ -77,7 +77,7 @@ export function PainelDemonstracao({
           />
         </View>
 
-        <View style={styles.divisor} />
+        <View style={[styles.divisor, { backgroundColor: palette.border }]} />
 
         <View style={styles.acoes}>
           <Button
@@ -148,7 +148,6 @@ const styles = StyleSheet.create({
   },
   divisor: {
     height: 1,
-    backgroundColor: palette.border,
   },
   acoes: {
     gap: spacing.md,
