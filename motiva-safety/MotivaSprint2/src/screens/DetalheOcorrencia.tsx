@@ -522,7 +522,6 @@ const styles = StyleSheet.create({
   },
   divisor: {
     height: 1,
-    backgroundColor: palette.background,
   },
   botaoMapa: {
     marginTop: spacing.md,
