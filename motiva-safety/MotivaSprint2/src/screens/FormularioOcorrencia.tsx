@@ -406,7 +406,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
             obrigatorio
             multilinha
             maxLength={500}
-            placeholder="O que foi encontrado, qual a extensão e o que já foi observado no local"
+            placeholder="Descreva a vegetação, a extensão do trecho e o impacto observado"
             value={dados.descricao}
             onChangeText={(texto) => alterar("descricao", texto)}
             erro={erros.descricao}
@@ -455,7 +455,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
           <Input
             label="Referência do ponto"
             obrigatorio
-            placeholder="Ex: Acostamento direito, antes do viaduto"
+            placeholder="Ex: Faixa de domínio direita, antes do viaduto"
             value={dados.referencia}
             onChangeText={(texto) => alterar("referencia", texto)}
             erro={erros.referencia}
@@ -531,8 +531,7 @@ export function FormularioOcorrencia({ navigation, route }: PropsFormulario) {
             <View style={[styles.avisoAlto, { backgroundColor: palette.dangerSoft, borderLeftColor: palette.danger }]}>
               <Ionicons name="warning" size={18} color={colors.red600} />
               <AppText variant="caption" color={colors.red600} style={styles.flex}>
-                Ocorrências de alto risco entram na fila de urgência e notificam o Centro de
-                Controle Operacional assim que são salvas.
+                Ocorrências de alto risco entram na fila de urgência para priorização da equipe de conservação.
               </AppText>
             </View>
           ) : null}
