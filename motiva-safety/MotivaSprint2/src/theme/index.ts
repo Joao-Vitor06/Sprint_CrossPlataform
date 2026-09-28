@@ -17,3 +17,6 @@ export {
   TIPO,
   TRANSICOES,
 } from "./domain";
+
+export { ThemeProvider, useAppTheme } from "./ThemeProvider";
+export type { AppTheme, ThemeMode, ThemePalette } from "./ThemeProvider";
