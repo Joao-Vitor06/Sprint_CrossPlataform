@@ -13,7 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 
-import { colors, palette, radius, shadows, spacing } from "../theme";
+import { colors, radius, shadows, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 
 type TipoToast = "sucesso" | "erro" | "info";
@@ -51,6 +51,7 @@ const DURACAO_MS = 3200;
  * Alertas modais ficam reservados para confirmações destrutivas (ConfirmSheet).
  */
 export function ToastProvider({ children }: { children: ReactNode }) {
+  const { palette } = useAppTheme();
   const [toast, setToast] = useState<Toast | null>(null);
   const insets = useSafeAreaInsets();
   const deslocamento = useRef(new Animated.Value(-140)).current;
@@ -98,7 +99,14 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const valor = useMemo(() => ({ mostrar }), [mostrar]);
-  const visual = toast ? VISUAL[toast.tipo] : null;
+  const visual = toast
+    ? {
+        fundo: toast.tipo === "erro" ? palette.dangerSoft : toast.tipo === "sucesso" ? palette.successSoft : palette.actionSoft,
+        borda: toast.tipo === "erro" ? palette.danger : toast.tipo === "sucesso" ? palette.success : palette.action,
+        cor: toast.tipo === "erro" ? palette.danger : toast.tipo === "sucesso" ? palette.success : palette.action,
+        icone: VISUAL[toast.tipo].icone,
+      }
+    : null;
 
   return (
     <ToastContext.Provider value={valor}>
