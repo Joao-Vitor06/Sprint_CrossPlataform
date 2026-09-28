@@ -179,7 +179,7 @@ export function ListaOcorrencias({ navigation }: PropsLista) {
               ? `Nada encontrado para "${busca.trim()}". Tente outro termo ou revise os filtros.`
               : "Nenhuma ocorrência combina com os filtros selecionados."
           }
-          acao={{ titulo: "Limpar filtros", icone: "close", onPress: limparFiltros }}
+          acao={{ titulo: "Limpar filtros", onPress: limparFiltros }}
         />
       );
     }
