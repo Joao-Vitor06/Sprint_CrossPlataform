@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import { HIT_SLOP, palette, radius, semAnelDeFocoWeb, spacing, typography } from "../theme";
+import { HIT_SLOP, radius, semAnelDeFocoWeb, spacing, typography, useAppTheme } from "../theme";
 
 type Props = {
   valor: string;
@@ -11,15 +11,17 @@ type Props = {
 
 /** Busca por texto livre. O botão de limpar só aparece quando há algo digitado. */
 export function SearchBar({ valor, onChange, placeholder = "Buscar" }: Props) {
+  const { palette } = useAppTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: palette.surface, borderColor: palette.border }]}>
       <Ionicons name="search" size={18} color={palette.textMuted} />
       <TextInput
         value={valor}
         onChangeText={onChange}
         placeholder={placeholder}
         placeholderTextColor={palette.textMuted}
-        style={styles.input}
+        style={[styles.input, { color: palette.textPrimary }]}
         returnKeyType="search"
         autoCorrect={false}
         accessibilityLabel="Campo de busca"
@@ -43,16 +45,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: spacing.sm,
-    backgroundColor: palette.surface,
     borderRadius: radius.md,
     borderWidth: 1,
-    borderColor: palette.border,
     paddingHorizontal: spacing.md,
     height: 44,
   },
   input: {
     flex: 1,
-    color: palette.textPrimary,
     padding: 0,
     ...typography.bodyMedium,
     ...semAnelDeFocoWeb,
