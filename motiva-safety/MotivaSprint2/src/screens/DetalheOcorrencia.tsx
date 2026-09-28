@@ -245,6 +245,55 @@ export function DetalheOcorrencia({ navigation, route }: PropsDetalhe) {
           )}
         </Card>
 
+        <Card titulo="Indicadores de vegetação">
+          <View style={styles.indicadorPrincipal}>
+            <View>
+              <AppText variant="overline" color={palette.textMuted}>Altura medida</AppText>
+              <AppText variant="displayLg">{ocorrencia.alturaAtualCm} cm</AppText>
+            </View>
+            <View style={styles.indicadorComparacao}>
+              <AppText variant="caption" color={palette.textSecondary}>
+                Limite do trecho: {ocorrencia.limiteCm} cm
+              </AppText>
+              <AppText
+                variant="caption"
+                color={ocorrencia.alturaAtualCm > ocorrencia.limiteCm ? RISCO[ocorrencia.risco].cor : palette.textSecondary}
+              >
+                {ocorrencia.alturaAtualCm > ocorrencia.limiteCm
+                  ? `${ocorrencia.alturaAtualCm - ocorrencia.limiteCm} cm acima do limite`
+                  : "Dentro do limite operacional"}
+              </AppText>
+            </View>
+          </View>
+          <View style={styles.divisor} />
+          <AppText variant="overline" color={palette.textMuted}>Histórico de intervenções</AppText>
+          {ocorrencia.intervencoes.length === 0 ? (
+            <AppText variant="caption" color={palette.textMuted}>
+              Nenhuma intervenção registrada para este trecho.
+            </AppText>
+          ) : (
+            ocorrencia.intervencoes.map((intervencao) => (
+              <View key={intervencao.id} style={styles.intervencao}>
+                <View style={styles.intervencaoIcone}>
+                  <Ionicons name="cut-outline" size={16} color={palette.action} />
+                </View>
+                <View style={styles.acaoTextos}>
+                  <AppText variant="bodyMedium">{intervencao.tipo.replaceAll("_", " ")}</AppText>
+                  <AppText variant="caption" color={palette.textSecondary}>
+                    {intervencao.equipe}
+                    {intervencao.alturaAntesCm !== undefined && intervencao.alturaDepoisCm !== undefined
+                      ? ` · ${intervencao.alturaAntesCm} → ${intervencao.alturaDepoisCm} cm`
+                      : ""}
+                  </AppText>
+                  {intervencao.observacao ? (
+                    <AppText variant="caption" color={palette.textMuted}>{intervencao.observacao}</AppText>
+                  ) : null}
+                </View>
+              </View>
+            ))
+          )}
+        </Card>
+
         <Card titulo="Registro">
           <LinhaInfo icone="person-outline" rotulo="Responsável" valor={ocorrencia.responsavel} />
           <View style={styles.divisor} />
@@ -431,6 +480,31 @@ const styles = StyleSheet.create({
   },
   faixaTexto: {
     flex: 1,
+  },
+  indicadorPrincipal: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: spacing.lg,
+  },
+  indicadorComparacao: {
+    flex: 1,
+    gap: spacing.xs,
+    alignItems: "flex-end",
+  },
+  intervencao: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: spacing.md,
+    paddingTop: spacing.md,
+  },
+  intervencaoIcone: {
+    width: 30,
+    height: 30,
+    borderRadius: radius.sm,
+    backgroundColor: palette.actionSoft,
+    alignItems: "center",
+    justifyContent: "center",
   },
   linhaInfo: {
     flexDirection: "row",
