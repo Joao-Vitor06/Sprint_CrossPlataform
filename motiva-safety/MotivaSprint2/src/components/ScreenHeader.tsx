@@ -3,7 +3,7 @@ import { Platform, Pressable, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
-import { HIT_SLOP, palette, radius, shadows, spacing } from "../theme";
+import { HIT_SLOP, radius, shadows, spacing, useAppTheme } from "../theme";
 import { AppText } from "./AppText";
 
 type Acao = {
@@ -29,10 +29,13 @@ type Props = {
  * o topo idêntico em toda a navegação.
  */
 export function ScreenHeader({ titulo, sobretitulo, onVoltar, acoes, children }: Props) {
+  const { palette, mode, toggleMode } = useAppTheme();
   const insets = useSafeAreaInsets();
 
-  return (
-    <View style={[styles.header, { paddingTop: insets.top + spacing.sm }]}>
+  const temaIcone = mode === "dark" ? "sunny-outline" : "moon-outline";
+  const temaRotulo = mode === "dark" ? "Ativar modo claro" : "Ativar modo escuro";
+
+  return (\n    <View style={[styles.header, { paddingTop: insets.top + spacing.sm }]}>
       <View style={styles.linhaTopo}>
         {onVoltar ? (
           <Pressable
@@ -57,7 +60,7 @@ export function ScreenHeader({ titulo, sobretitulo, onVoltar, acoes, children }:
           </AppText>
         </View>
 
-        {acoes?.map((acao) => (
+        <Pressable\n          onPress={toggleMode}\n          hitSlop={HIT_SLOP}\n          accessibilityRole="button"\n          accessibilityLabel={temaRotulo}\n          style={({ pressed }) => [styles.botaoIcone, pressed && styles.pressionado]}\n        >\n          <Ionicons name={temaIcone} size={20} color={palette.headerText} />\n        </Pressable>\n\n        {acoes?.map((acao) => (
           <Pressable
             key={acao.rotulo}
             onPress={acao.onPress}
@@ -78,7 +81,6 @@ export function ScreenHeader({ titulo, sobretitulo, onVoltar, acoes, children }:
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: palette.headerBackground,
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.lg,
     gap: spacing.lg,
