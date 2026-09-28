@@ -437,6 +437,30 @@ A versão atual do Motiva Safety possui:
 
 **Sprint 4 → integração e preparação para a versão final do Motiva Safety.**
 
+# ✅ Matriz de aderência à Sprint 4
+
+Abaixo está a conferência da entrega contra o enunciado da Sprint 4.
+
+| Exigência | Estado | Evidência |
+|---|---|---|
+| Versão final em APK Android | 🟡 Preparado | `eas.json` com perfil `preview`; falta gerar e validar o APK no dispositivo |
+| Plano de negócio | ✅ Concluído | [PLANO_NEGOCIO.md](./motiva-safety/docs/PLANO_NEGOCIO.md) |
+| Proposta de valor | ✅ Concluído | Plano de negócio |
+| Público-alvo e personas | ✅ Concluído | Plano de negócio |
+| Modelo de receita | ✅ Concluído | B2B SaaS + implantação + serviço gerenciado |
+| Custos operacionais estimados | ✅ Concluído | Plano de negócio |
+| Riscos e diferenciais | ✅ Concluído | Plano de negócio |
+| README como documento-âncora | ✅ Concluído | Este README |
+| Link do APK | ⏳ Pendente | Inserir após o build EAS |
+| Link do vídeo final | ⏳ Pendente | Inserir após a gravação |
+| Pitch de até 5 minutos | 🟡 Roteirizado | [ROTEIRO_VIDEO.md](./motiva-safety/MotivaSprint2/ROTEIRO_VIDEO.md) |
+| Demonstração no dispositivo | 🟡 Preparada | Depende da instalação do APK |
+| Problema da Motiva no centro do produto | ✅ Concluído | 14/14 mocks são de vegetação, com altura, limite e intervenções |
+| Correções de qualidade da Sprint 3 | ✅ Concluído no código | Rótulos, rodovias, histórico, dados mockados e documentação revisados |
+| Migração para Flutter | N/A | Projeto permanece em React Native + Expo |
+
+> **Importante:** tecnicamente o repositório já está preparado para a entrega final, mas a entrega da Sprint 4 só fica 100% fechada depois de **gerar o APK, instalar/testar no Android, gravar o vídeo e adicionar os dois links acima**.
+
 # 🏁 Consolidação das quatro Sprints
 
 | Sprint | Evolução |
