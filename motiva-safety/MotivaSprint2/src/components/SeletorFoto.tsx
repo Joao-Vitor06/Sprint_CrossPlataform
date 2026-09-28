@@ -74,7 +74,7 @@ export function SeletorFoto({
 
       <AppText variant="subtitle">Anexe a evidência</AppText>
       <AppText variant="caption" color={palette.textSecondary} style={styles.ajuda}>
-        Enquadre o problema e o trecho da pista na mesma foto
+        Enquadre a vegetação e o trecho da rodovia na mesma foto
       </AppText>
 
       <View style={styles.botoes}>
