@@ -35,7 +35,8 @@ export function ScreenHeader({ titulo, sobretitulo, onVoltar, acoes, children }:
   const temaIcone = mode === "dark" ? "sunny-outline" : "moon-outline";
   const temaRotulo = mode === "dark" ? "Ativar modo claro" : "Ativar modo escuro";
 
-  return (\n    <View style={[styles.header, { paddingTop: insets.top + spacing.sm }]}>
+  return (
+    <View style={[styles.header, { backgroundColor: palette.headerBackground, paddingTop: insets.top + spacing.sm }]}>
       <View style={styles.linhaTopo}>
         {onVoltar ? (
           <Pressable
@@ -60,7 +61,17 @@ export function ScreenHeader({ titulo, sobretitulo, onVoltar, acoes, children }:
           </AppText>
         </View>
 
-        <Pressable\n          onPress={toggleMode}\n          hitSlop={HIT_SLOP}\n          accessibilityRole="button"\n          accessibilityLabel={temaRotulo}\n          style={({ pressed }) => [styles.botaoIcone, pressed && styles.pressionado]}\n        >\n          <Ionicons name={temaIcone} size={20} color={palette.headerText} />\n        </Pressable>\n\n        {acoes?.map((acao) => (
+        <Pressable
+          onPress={toggleMode}
+          hitSlop={HIT_SLOP}
+          accessibilityRole="button"
+          accessibilityLabel={temaRotulo}
+          style={({ pressed }) => [styles.botaoIcone, pressed && styles.pressionado]}
+        >
+          <Ionicons name={temaIcone} size={20} color={palette.headerText} />
+        </Pressable>
+
+        {acoes?.map((acao) => (
           <Pressable
             key={acao.rotulo}
             onPress={acao.onPress}
