@@ -12,7 +12,7 @@ A aplicação foi construída em **React Native com Expo**, mantendo os fluxos d
 
 > **Status da Sprint:** aplicação funcional para demonstração, com os principais fluxos implementados e testados manualmente.  
 > **Tecnologia:** React Native + Expo + TypeScript  
-> **Versão:** Sprint 3 / preparação para Sprint 4
+> **Versão:** Sprint 4 / Entrega final
 
 ---
 
@@ -161,17 +161,16 @@ Arquivo principal:
 
 \`src/data/mockData.ts\`
 
-A base contempla ocorrências com diferentes:
+A base contempla 14 ocorrências exclusivamente de vegetação, distribuídas entre:
 
-- tipos;
-- níveis de risco;
-- status;
-- rodovias;
-- quilômetros;
-- responsáveis;
-- situações com e sem foto;
-- situações com e sem coordenadas;
-- históricos de alteração de status.
+- vegetação acima do limite;
+- vegetação encobrindo sinalização;
+- vegetação invadindo acostamento;
+- vegetação sobre drenagem;
+- trechos dentro do padrão;
+- roçada concluída;
+- poda concluída;
+- inspeção sem necessidade de intervenção.
 
 Além da base inicial, o aplicativo permite:
 
@@ -230,37 +229,17 @@ Durante a evolução da Sprint 3, alguns problemas das versões anteriores foram
 
 ---
 
-# 8. Pendências e limitações atuais
+# 8. Estado da entrega final
 
-A versão entregue ainda possui limitações que precisam ser tratadas antes de uma versão conectada ao ambiente real:
+A aplicação está funcional no ambiente de desenvolvimento e preparada para a geração do APK. As pendências desta etapa são exclusivamente de **distribuição e validação final da entrega**:
 
-### Backend
+- geração do APK pelo EAS;
+- instalação e regressão em Android físico;
+- publicação externa do APK;
+- gravação do pitch final;
+- inclusão dos links do APK e do vídeo neste README.
 
-Atualmente não existe uma API ou banco de dados remoto. As ocorrências são persistidas somente no dispositivo através do AsyncStorage.
-
-**Impacto:** dois dispositivos não compartilham automaticamente os mesmos dados.
-
-### Autenticação
-
-Ainda não existe login nem controle de acesso por usuário.
-
-**Impacto:** o responsável pela ocorrência é informado manualmente.
-
-### Mapas
-
-A aplicação possui localização e coordenadas, porém o mapa é aberto através do aplicativo de mapas do dispositivo em vez de possuir um mapa incorporado.
-
-### Imagens
-
-As fotos ainda não passam por uma etapa específica de compressão e redimensionamento.
-
-**Impacto:** o armazenamento local pode crescer rapidamente com muitos registros.
-
-### Testes automatizados
-
-Os testes desta Sprint foram manuais. Ainda não há suíte automatizada de testes unitários ou de integração.
-
----
+A integração com backend remoto, autenticação e sincronização entre dispositivos permanece como evolução de produto e não é necessária para o protótipo acadêmico offline-first desta entrega.
 
 # 9. Plano de ajustes para a Sprint 4
 
@@ -368,23 +347,6 @@ Para instalar: baixe o APK no Android, autorize a instalação quando solicitado
 
 O vídeo deve ter até 5 minutos, com protagonismo dos integrantes, apresentando problema, solução, APK instalado, demonstração, plano de negócio e impacto.
 
-
-# 💼 Plano de negócio
-
-O plano completo está em **[motiva-safety/docs/PLANO_NEGOCIO.md](./motiva-safety/docs/PLANO_NEGOCIO.md)**.
-
-Ele reúne:
-- proposta de valor;
-- público-alvo e personas;
-- modelo B2B SaaS + implantação + serviço gerenciado;
-- premissas de custos;
-- diferenciais;
-- riscos;
-- impacto esperado;
-- indicadores;
-- roadmap para visão computacional.
-
-Os valores financeiros são **premissas acadêmicas para um piloto**, não uma cotação comercial da Motiva.
 
 
 # 11. Como executar o projeto
