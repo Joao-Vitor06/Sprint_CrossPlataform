@@ -9,11 +9,11 @@ O Motiva Safety transforma o monitoramento de vegetação em um fluxo operaciona
 A Sprint 4 corrigiu o principal ponto de atenção identificado na Sprint 3: o produto deixou de ser um gerenciador genérico de ocorrências de segurança e passou a ter **vegetação como núcleo do domínio**.
 
 # Integrantes
-BRUNO OTÁVIO DA CRUZ CARVALHO - RM:562354 
-GUSTAVO CORDEIRO BRAGA - RM:562247 
-JOÃO VITOR SANTANA SILVA RIBEIRO - RM:564693 
-LETÍCIA GABRIELLE ANDRADE TEMÓTEO - RM:563985 
-STEFANNY BRUM DOS SANTOS - RM:566216
+- Bruno Otávio da Cruz Carvalho — RM 562354
+- Gustavo Cordeiro Braga — RM 562247
+- João Vitor Santana Silva Ribeiro — RM 564693
+- Letícia Gabrielle Andrade Temóteo — RM 563985
+- Stefanny Brum dos Santos — RM 566216
 
 ---
 
@@ -153,22 +153,23 @@ O tema escuro utiliza superfícies azul-marinho e cinza profundo, mantendo o azu
 ### Estrutura principal
 
 ```text
-MotivaSprint4/
-├── App.tsx
-├── app.json
-├── eas.json
-├── src/
-│   ├── components/
-│   ├── context/
-│   ├── data/
-│   ├── navigation/
-│   ├── screens/
-│   ├── services/
-│   ├── theme/
-│   ├── types/
-│   └── utils/
-├── assets/
-│   └── ocorrencias/
+motiva-safety/
+├── MotivaSprint4/
+│   ├── App.tsx
+│   ├── app.json
+│   ├── eas.json
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── data/
+│   │   ├── navigation/
+│   │   ├── screens/
+│   │   ├── services/
+│   │   ├── theme/
+│   │   ├── types/
+│   │   └── utils/
+│   └── assets/
+│       └── ocorrencias/
 └── docs/
     ├── PLANO_NEGOCIO.md
     └── TESTES_SPRINT4_FINAL.md
