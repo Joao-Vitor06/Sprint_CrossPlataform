@@ -284,7 +284,7 @@ O documento possui **18 cenários**, cobrindo:
 - GPS negado;
 - migração da base antiga.
 
-Os 18 testes devem ser executados novamente no APK final instalado em dispositivo Android antes da submissão.
+✅ Os 18 testes foram executados no APK 4.0.0 instalado em um Samsung Galaxy S25+ (Android 16) em 22/10/2026, e todos passaram.
 
 ---
 
@@ -343,7 +343,7 @@ Principal feedback recebido:
 
 | Exigência | Estado atual |
 |---|---|
-| Aplicação final em Android | ✅ APK gerado via EAS Build — validação em dispositivo pendente |
+| Aplicação final em Android | ✅ APK gerado via EAS Build e validado em dispositivo |
 | APK hospedado fora do Git | ✅ Hospedado no EAS Build |
 | Link do APK no README | ✅ Seção 7 |
 | Plano de negócio | Concluído |
@@ -357,7 +357,7 @@ Principal feedback recebido:
 | Pitch de até 5 minutos | Roteiro concluído |
 | Protagonismo dos integrantes | Pendente de gravação |
 | Link do vídeo | Pendente |
-| Demonstração em dispositivo | Pendente de instalação do APK |
+| Demonstração em dispositivo | ✅ APK instalado e testado no Galaxy S25+ |
 | Problema da Motiva no centro do produto | Concluído |
 | Vegetação como domínio principal | Concluído |
 | Altura e limite | Concluído |
@@ -369,11 +369,9 @@ Principal feedback recebido:
 
 O código e a documentação estão alinhados ao escopo da Sprint 4, e o APK final foi gerado e publicado no EAS Build (link na seção 7).
 
-Para a entrega ficar integralmente concluída, faltam:
+O APK foi instalado e validado em Android físico, e os 18 testes finais passaram.
 
-1. instalar e validar o APK em Android físico;
-2. executar os testes finais;
-3. gravar o pitch e adicionar o link do vídeo ao README.
+Para a entrega ficar integralmente concluída, falta apenas gravar o pitch e adicionar o link do vídeo ao README.
 
 ---
 
