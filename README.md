@@ -183,28 +183,18 @@ motiva-safety/
 
 ## 7. APK final
 
-O projeto possui um perfil EAS configurado para gerar APK Android:
+📥 **Download:** [Motiva Safety v4.0.0 (APK)](https://expo.dev/accounts/ccpg/projects/motiva-safety/builds/70ef02e1-c2b9-4688-8cf7-c3763414f421)
 
-```bash
-eas build --platform android --profile preview
-```
-
-### Link do APK
-
-**Pendente:** gerar o build final e publicar o APK fora do repositório.
-
-O APK deverá ser hospedado em EAS Build, GitHub Releases, Google Drive ou serviço equivalente.
-
-**O arquivo binário não deve ser commitado neste repositório.**
+- Sistema: Android 7.0 ou superior
+- Versão: 4.0.0
 
 ### Instalação
+1. Abra o link acima no celular Android e baixe o arquivo `.apk`.
+2. Se solicitado, autorize "Instalar apps desconhecidos" para o navegador ou gerenciador de arquivos.
+3. Toque no arquivo, instale e abra o **Motiva Safety**.
+4. Permita câmera e localização quando o app pedir.
 
-1. Abrir o link do APK no dispositivo Android.
-2. Autorizar a instalação quando solicitado.
-3. Instalar o Motiva Safety.
-4. Abrir o aplicativo.
-5. Permitir acesso à câmera e localização.
-6. Executar os testes finais.
+O APK foi gerado com `eas build --platform android --profile preview` e não está versionado neste repositório.
 
 ---
 
@@ -299,7 +289,7 @@ O documento possui **18 cenários**, cobrindo:
 - GPS negado;
 - migração da base antiga.
 
-Os 18 testes devem ser executados novamente no APK final instalado em dispositivo Android antes da submissão.
+✅ Os 18 testes foram executados no APK 4.0.0 instalado em um Samsung Galaxy S25+ (Android 16) em 22/10/2026, e todos passaram.
 
 ---
 
@@ -358,9 +348,9 @@ Principal feedback recebido:
 
 | Exigência | Estado atual |
 |---|---|
-| Aplicação final em Android | Em preparação — código preparado; falta gerar e validar o APK |
-| APK hospedado fora do Git | Pendente — falta publicar o build |
-| Link do APK no README | Pendente — falta adicionar após publicação |
+| Aplicação final em Android | ✅ APK gerado via EAS Build e validado em dispositivo |
+| APK hospedado fora do Git | ✅ Hospedado no EAS Build |
+| Link do APK no README | ✅ Seção 7 |
 | Plano de negócio | Concluído |
 | Proposta de valor | Concluída |
 | Público-alvo e personas | Concluídos |
@@ -372,7 +362,7 @@ Principal feedback recebido:
 | Pitch de até 5 minutos | Roteiro concluído |
 | Protagonismo dos integrantes | Pendente de gravação |
 | Link do vídeo | Pendente |
-| Demonstração em dispositivo | Pendente de instalação do APK |
+| Demonstração em dispositivo | ✅ APK instalado e testado no Galaxy S25+ |
 | Problema da Motiva no centro do produto | Concluído |
 | Vegetação como domínio principal | Concluído |
 | Altura e limite | Concluído |
@@ -382,16 +372,11 @@ Principal feedback recebido:
 
 ### Conclusão
 
-O código e a documentação estão alinhados ao escopo da Sprint 4.
+O código e a documentação estão alinhados ao escopo da Sprint 4, e o APK final foi gerado e publicado no EAS Build (link na seção 7).
 
-A entrega acadêmica só fica integralmente concluída após:
+O APK foi instalado e validado em Android físico, e os 18 testes finais passaram.
 
-1. gerar o APK;
-2. instalar e validar o APK em Android físico;
-3. executar os testes finais;
-4. publicar o APK;
-5. gravar o pitch;
-6. adicionar os links do APK e do vídeo ao README.
+Para a entrega ficar integralmente concluída, falta apenas gravar o pitch e adicionar o link do vídeo ao README.
 
 ---
 
