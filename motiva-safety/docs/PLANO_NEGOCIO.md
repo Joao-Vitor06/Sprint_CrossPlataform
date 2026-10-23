@@ -6,7 +6,7 @@ O **Motiva Safety** é uma solução mobile para monitoramento e gestão de vege
 
 O protótipo final utiliza câmera/galeria, GPS, persistência local, indicadores de altura, limite operacional, risco, status e histórico de intervenções. Em uma implantação real, a mesma camada de serviço poderá ser conectada a uma API e a um banco de dados corporativo.
 
-A solução é especialmente adequada a operações em que equipes de conservação percorrem grandes extensões rodoviárias. A Motiva Sorocabana, por exemplo, informa operar mais de 460 km e manter equipes de conservação atuando diariamente, o que ilustra a escala operacional em que rastreabilidade e priorização podem gerar valor. citeturn0search12
+A solução é especialmente adequada a operações em que equipes de conservação percorrem grandes extensões rodoviárias, nas quais rastreabilidade e priorização podem apoiar o planejamento das intervenções.
 
 ---
 
