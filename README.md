@@ -133,6 +133,10 @@ O tema escuro utiliza superfícies azul-marinho e cinza profundo, mantendo o azu
 - Permissão de localização
 - Modo demonstração para validação dos cenários
 
+### Modo demonstração
+
+O modo demonstração é uma ferramenta de validação dos fluxos do aplicativo, não uma funcionalidade operacional de produção. Ele permite restaurar as 14 ocorrências de exemplo, validar o estado de lista vazia e reproduzir falhas controladas. Os dados restaurados são exemplos, não registros operacionais reais. Esse recurso apoia os cenários SF-02, SF-13 e SF-15 do checklist de testes.
+
 ---
 
 ## 6. Stack e arquitetura
@@ -329,12 +333,12 @@ A apresentação deve ser narrada pelos integrantes. Não utilizar narração au
 
 ## 12. Evolução das quatro Sprints
 
-| Sprint | Entrega |
+| Sprint | Entregas |
 |---|---|
-| Sprint 1 | Problema, proposta e prototipação inicial |
-| Sprint 2 | Estrutura mobile, navegação, componentes e identidade visual |
-| Sprint 3 | Protótipo funcional completo, GPS, foto, persistência, tramitação, histórico e 20 testes |
-| Sprint 4 | Especialização em vegetação, altura e limite, histórico de intervenções, plano de negócio, tema escuro e preparação do APK final |
+| Sprint 1 | Definição do problema de conservação rodoviária, proposta inicial do Motiva Safety e prototipação dos fluxos de monitoramento de ocorrências. |
+| Sprint 2 | Estrutura inicial do aplicativo mobile, organização da navegação, componentes reutilizáveis e construção das telas de consulta e visualização de ocorrências. |
+| Sprint 3 | Protótipo funcional com lista, filtros, busca, detalhe, cadastro, edição, foto, GPS, persistência local com AsyncStorage, tramitação, histórico e 20 testes manuais documentados. |
+| Sprint 4 | Especialização do domínio em vegetação, 14 ocorrências de demonstração, altura e limite operacional, histórico de intervenções, tema claro e escuro, plano de negócio e checklist de 18 testes finais. |
 
 ### Resultado da Sprint 3
 
@@ -399,7 +403,7 @@ Estas funcionalidades ficam como evolução do produto e não como pendências o
 - autenticação;
 - sincronização entre dispositivos;
 - mapa integrado;
-- compressão de imagens;
+- **Compressão de imagens (limitação conhecida):** ainda não implementada. Uma versão de produção deverá redimensionar e comprimir as fotos antes do armazenamento para reduzir o espaço utilizado e o volume de dados transferidos. A implementação poderá utilizar `expo-image-manipulator`, validando a qualidade da evidência após o processamento.
 - testes automatizados;
 - visão computacional;
 - criação automática de ocorrências;
