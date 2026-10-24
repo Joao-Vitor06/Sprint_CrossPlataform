@@ -295,9 +295,7 @@ O documento possui **18 cenários**, cobrindo:
 
 ## 11. Pitch final
 
-### Link do vídeo
-
-**Pendente:** gravar e publicar o vídeo final.
+### Link do vídeo: https://youtube.com/shorts/G7DtJGzUbsk
 
 O vídeo deve ter **até 5 minutos** e contar com protagonismo dos integrantes do grupo.
 
